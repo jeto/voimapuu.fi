@@ -1,0 +1,17 @@
+name: scp files
+on: [push]
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_DEPLOY_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "*"
+        target: voimapuu.fi

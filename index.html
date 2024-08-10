@@ -8,250 +8,274 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet"></head>
-<body>
-    <header>
-        <img src="voimapuualpha.png" alt="Voimapuu">
-        <!-- <h1>Voimapuu</h1> -->
-    </header>
-    <nav>
-        <button class="tab-btn active" data-target="intro">Etusivu</button>
-        <button class="tab-btn" data-target="info">Info</button>
-        <button class="tab-btn" data-target="schedule">Ohjelma</button>
-        <button class="tab-btn" data-target="map">Kartta</button>
-    </nav>
-    <section id="intro" class="content-section active">
-        <h2>Tervetuloa Voimapuuhun!</h2>
-        <p>
-            Rakkaat metsän ystävät, sielun tanssijat ja luonnon lapset, kutsumme teidät mukaan Voimapuu-festivaalin lumottuun maailmaan torstaista sunnuntaihin 29.8.-1.9. Tämä festivaali on kuin kotoinen syli, jossa maadoitumme yhdessä äiti Maan sylissä. Täällä Heinolan vihreissä metsissä, järvien kimalluksessa ja kuikan laulussa annamme luonnon energian virrata ja sydämemme sykkiä samassa tahdissa.
-        </p>
-        <h2>Elä luonnon tahdissa</h2>
-        <p>
-            Tanssimme, laulamme ja nautimme metsän rauhasta Heinolan lumouksessa. Täällä luonnon kauneus on läsnä jokaisessa hetkessä, ja voimme tuntea sen sykkeen maaperässä ja kuulla sen laulun puiden lehdissä. "Leave no trace" -periaate on sydämissämme: huolehdimme, että jätämme vain kevyet askeleemme ja paljon rakkautta luonnon ympärillemme.
-        </p>
-        <h2>Yhteisöllisyys ja yhdessä tekeminen</h2>
-        <p>
-            Voimapuu-festivaali on kuin yhteisöllinen kudelma, jonka jokainen lanka on osa suurta, elävää taideteosta. Tämä on paikka, jossa jokainen meistä voi olla oma itsensä – elää, nauraa, ja tanssia vapaana ja onnellisena. Festivaali toimii periaatteella "Sitä saa mitä tekee", ja se on elävä todiste siitä, kuinka jokainen meistä voi luoda yhteisen kokemuksen voimaa ja yhteisöllisyyttä.
-        </p>
-        
-        <h2>Tukea ja turvaa kaikille</h2>
-        <p>
-            Luomme yhdessä tilan, jossa jokainen sielu voi kukoistaa vapaasti. Turvallinen tila on meille tärkeä, joten kunnioitamme toistemme rajoja ja tuemme toisiamme. Olemme kaikki osa yhtä suurta luontoa, ja jokainen meistä on arvokas.
-        </p>
-    </section>
-    <section id="info" class="content-section">
-        <h2>Saapuminen ja pysäköinti</h2>
-        <p>
-            Festivaalit järjestetään Heinolan ja Kouvolan välissä. Tarkemmat koordinaatit ja saapumisohjeet jaetaan lähempänä tapahtumaa.
-            <br>
-            Suosittelemme järjestämään yhteiskyytejä parkkialuee tilan ja ympäristön säästämiseksi. Pysäköintialueet on merkitty alueelle.
-        </p>
-        <h2>Vesi</h2>
-        <p>
-            Alueella on kaivo, mutta tämänhetkisen tiedon mukaan kaivon vesi ei ole juomakelpoista (8.8.2024). RIP viitasammako :()
-            <br>
-            Mikäli mahdollista, tuothan oman ison vesiastian, ja juomapullon. Vedet täytetään keskitetysti kerran päivässä.
-        </p>
-        <h2>Ruoka</h2>
-        <p>
-            Festivaaleilla ei järjestetä yhteisruokailua, mutta perjantai- ja lauantai-iltoina 17-20 on suunnitteilla ruokakoju josta voi ostaa kasvisruokaa. Ota yhteyttä jos olet kiinnostunut osallistumaan ruokakojun toimintaan!
-            <br>
-            Ruuanlaittoon tarjoamme seuraavankaltaisia mahdollisuuksia:
-            <ul>
-                <li>Avotulipaikka jossa voi grillata (metsäpalovarauksella)</li>
-                <li>Kaasuliesi</li>
-                <li>Iso muurikkapannu</li>
-                <li>Vedenkeitin</li>
-                <li>Perus kattilaa ja pannua</li>
-            </ul>
-            <br>
-            Tuothan siis mukanasi omat astiat, ruuanlaittovälineet jos tarvitset muita kuin yllämainittuja ja ruokatarpeita jotka eivät vaadi kylmäsäilytystä.
-        </p>
-        <h2>Tiski</h2>
-        <p>
-            Alueella on tiskauspiste josta löytyy tiskiainetta, harjoja ja lämmintä vettä.
-        </p>
-        <h2>Hygienia</h2>
-        <p>
-            Järven rannalle tulee telttasauna ja kylmä järvivesisuihku, käytäthän biohajoavia pesuaineita!
-        </p>
-        <h2>Käymälä</h2>
-        <p>
-            Alueelle tulee kaksi bajamajaa ja stagella on <i>UG OG</i> biokäymälä.
-        </p>
-        <h2>Ilmoitustaulu</h2>
-        <p>
-            Alueella on ilmoitustaulu johon voi paikan päällä ilmoittaa erinäisistä ohjelmanumeroista, kuten spontaaneista sienireissuista.
-        </p>
-    </section>
-    <section id="schedule" class="content-section">
-        <h2>Ohjelma</h2>
-        <p>
-            Alustava ohjelma, ehdotuksia voi esittää Voimapuu kanavalla tai järjestäjille viestillä.
-        </p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Aika</th>
-                    <th>Ohjelma</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Thursday -->
-                <tr>
-                    <td class="day-header" id="torstai" colspan="5">Torstai</td>
-                </tr>
-                <tr>
-                    <td>Päivällä</td>
-                    <td>Hawkbacktoback</td>
-                </tr>
-                <tr>
-                    <td>16:00</td>
-                    <td>Hälinää</td>
-                </tr>
-                <tr>
-                    <td>17:00</td>
-                    <td>Maadottoituminen</td>
-                </tr>
-                <tr>
-                    <td>18:00</td>
-                    <td>Tiluskierros</td>
-                </tr>
-                <tr>
-                    <td>19:00</td>
-                    <td>Rantalava hiljenee</td>
-                </tr>
-                <tr>
-                    <td>20:00</td>
-                    <td>Voimajaiset</td>
-                <!-- Friday -->
-                <tr>
-                    <td class="day-header" id="perjantai" colspan="5">Perjantai</td>
-                </tr>
-                <tr>
-                    <td>Päivällä</td>
-                    <td>Openmic</td>
-                </tr>
-                <tr>
-                    <td>16:00</td>
-                    <td>Jooga</td>
-                </tr>
-                <tr>
-                    <td>17:00</td>
-                    <td><b>DJ illjami</b></td>
-                </tr>
-                <tr>
-                    <td>18:00</td>
-                    <td>Tiluskierros</td>
-                </tr>
-                <tr>
-                    <td>19:00</td>
-                    <td>Tarina</td>
-                </tr>
-                <tr>
-                    <td>20:00</td>
-                    <td>Rantalava hiljenee</td>
-                </tr>
-                <tr>
-                    <td>21:00</td>
-                    <td><b>Back 2 Sack</b></td>
-                </tr>
-                <tr>
-                    <td>22:00</td>
-                    <td><b>αα</b></td>
-                </tr>
-                <tr>
-                    <td>23:00</td>
-                    <td><b>pace</b></td>
-                </tr>
-                <tr>
-                    <td>0:00</td>
-                    <td><b>Likainen Alapää</b></td>
-                </tr>
-                <tr>
-                    <td>1:00</td>
-                    <td><b>Tsurba</b></td>
-                </tr>
-                <tr>
-                    <td>2:00</td>
-                    <td><b>Invariant</b></td>
-                </tr>
-                <tr>
-                    <td>3:00</td>
-                    <td><b>Clippin'</b></td>
-                </tr>
-                <!-- Saturday -->
-                <tr>
-                    <td class="day-header" id="lauantai" colspan="5">Lauantai</td>
-                </tr>
-                <tr>
-                    <td>14:00</td>
-                    <td>Openmic</td>
-                </tr>
-                <tr>
-                    <td>16:00</td>
-                    <td>Jooga</td>
-                </tr>
-                <tr>
-                    <td>17:00</td>
-                    <td>Openmic</td>
-                </tr>
-                <tr>
-                    <td>18:00</td>
-                    <td><b>Jon Bon Joviaali</b></td>
-                </tr>
-                <tr>
-                    <td>19:00</td>
-                    <td>Tarina</td>
-                </tr>
-                <tr>
-                    <td>20:00</td>
-                    <td><b>Laurak</b></td>
-                </tr>
-                <tr>
-                    <td>21:00</td>
-                    <td>Rantalava hiljenee</td>
-                </tr>
-                <tr>
-                    <td>22:00</td>
-                    <td><b>Mkultra</b></td>
-                </tr>
-                <tr>
-                    <td>23:00</td>
-                    <td><b>Hemone</b></td>
-                </tr>
-                <tr>
-                    <td>0:00</td>
-                    <td><b>Hans Nobelander</b></td>
-                </tr>
-                <tr>
-                    <td>1:30</td>
-                    <td><b>House Goblin</b></td>
-                </tr>
-                <tr>
-                    <td>2:30</td>
-                    <td><b>Rupikonna</b></td>
-                </tr>
-                <tr>
-                    <td>3:30</td>
-                    <td><b>Østhøvel</b></td>
-                </tr>
-                <!-- Sunday -->
-                <tr>
-                    <td class="day-header" id="sunnuntai" colspan="5">Sunnuntai</td>
-                </tr>
-                <tr>
-                    <td>14:00</td>
-                    <td>Jäähyväiset</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <section id="map" class="content-section">
-        <div class="svg-container">
-            <img id="mapsvg" src="festivalmap.svg" alt="Festivaalikartta" />
-        </div>
-    </section>
-    <script>
+    <body>
+        <header>
+            <img src="voimapuualpha.png" alt="Voimapuu">
+            <!-- <h1>Voimapuu</h1> -->
+        </header>
+        <nav>
+            <button class="tab-btn active" data-target="intro">Etusivu</button>
+            <button class="tab-btn" data-target="info">Info</button>
+            <button class="tab-btn" data-target="schedule">Ohjelma</button>
+            <button class="tab-btn" data-target="artists">Artistit</button>
+            <button class="tab-btn" data-target="map">Kartta</button>
+        </nav>
+        <section id="intro" class="content-section active">
+            <h2>Tervetuloa Voimapuuhun!</h2>
+            <p>
+                Rakkaat metsän ystävät, sielun tanssijat ja luonnon lapset, kutsumme teidät mukaan Voimapuu-festivaalin lumottuun maailmaan torstaista sunnuntaihin 29.8.-1.9. Tämä festivaali on kuin kotoinen syli, jossa maadoitumme yhdessä äiti Maan sylissä. Täällä Heinolan vihreissä metsissä, järvien kimalluksessa ja kuikan laulussa annamme luonnon energian virrata ja sydämemme sykkiä samassa tahdissa.
+            </p>
+            <h2>Elä luonnon tahdissa</h2>
+            <p>
+                Tanssimme, laulamme ja nautimme metsän rauhasta Heinolan lumouksessa. Täällä luonnon kauneus on läsnä jokaisessa hetkessä, ja voimme tuntea sen sykkeen maaperässä ja kuulla sen laulun puiden lehdissä. "Leave no trace" -periaate on sydämissämme: huolehdimme, että jätämme vain kevyet askeleemme ja paljon rakkautta luonnon ympärillemme.
+            </p>
+            <h2>Yhteisöllisyys ja yhdessä tekeminen</h2>
+            <p>
+                Voimapuu-festivaali on kuin yhteisöllinen kudelma, jonka jokainen lanka on osa suurta, elävää taideteosta. Tämä on paikka, jossa jokainen meistä voi olla oma itsensä – elää, nauraa, ja tanssia vapaana ja onnellisena. Festivaali toimii periaatteella "Sitä saa mitä tekee", ja se on elävä todiste siitä, kuinka jokainen meistä voi luoda yhteisen kokemuksen voimaa ja yhteisöllisyyttä.
+            </p>
+
+            <h2>Tukea ja turvaa kaikille</h2>
+            <p>
+                Luomme yhdessä tilan, jossa jokainen sielu voi kukoistaa vapaasti. Turvallinen tila on meille tärkeä, joten kunnioitamme toistemme rajoja ja tuemme toisiamme. Olemme kaikki osa yhtä suurta luontoa, ja jokainen meistä on arvokas.
+            </p>
+        </section>
+        <section id="info" class="content-section">
+            <h2>Saapuminen ja pysäköinti</h2>
+            <p>
+                Festivaalit järjestetään Heinolan ja Kouvolan välissä. Tarkemmat koordinaatit ja saapumisohjeet jaetaan lähempänä tapahtumaa.
+                <br>
+                Suosittelemme järjestämään yhteiskyytejä parkkialuee tilan ja ympäristön säästämiseksi. Pysäköintialueet on merkitty alueelle.
+            </p>
+            <h2>Vesi</h2>
+            <p>
+                Alueella on kaivo, mutta tämänhetkisen tiedon mukaan kaivon vesi ei ole juomakelpoista (8.8.2024). RIP viitasammako :()
+                <br>
+                Mikäli mahdollista, tuothan oman ison vesiastian, ja juomapullon. Vedet täytetään keskitetysti kerran päivässä.
+            </p>
+            <h2>Ruoka</h2>
+            <p>
+                Festivaaleilla ei järjestetä yhteisruokailua, mutta perjantai- ja lauantai-iltoina 17-20 on suunnitteilla ruokakoju josta voi ostaa kasvisruokaa. Ota yhteyttä jos olet kiinnostunut osallistumaan ruokakojun toimintaan!
+                <br>
+                Ruuanlaittoon tarjoamme seuraavankaltaisia mahdollisuuksia:
+                <ul>
+                    <li>Avotulipaikka jossa voi grillata (metsäpalovarauksella)</li>
+                    <li>Kaasuliesi</li>
+                    <li>Iso muurikkapannu</li>
+                    <li>Vedenkeitin</li>
+                    <li>Perus kattilaa ja pannua</li>
+                </ul>
+                <br>
+                Tuothan siis mukanasi omat astiat, ruuanlaittovälineet jos tarvitset muita kuin yllämainittuja ja ruokatarpeita jotka eivät vaadi kylmäsäilytystä.
+            </p>
+            <h2>Tiski</h2>
+            <p>
+                Alueella on tiskauspiste josta löytyy tiskiainetta, harjoja ja lämmintä vettä.
+            </p>
+            <h2>Hygienia</h2>
+            <p>
+                Järven rannalle tulee telttasauna ja kylmä järvivesisuihku, käytäthän biohajoavia pesuaineita!
+            </p>
+            <h2>Käymälä</h2>
+            <p>
+                Alueelle tulee kaksi bajamajaa ja stagella on <i>UG OG</i> biokäymälä.
+            </p>
+            <h2>Ilmoitustaulu</h2>
+            <p>
+                Alueella on ilmoitustaulu johon voi paikan päällä ilmoittaa erinäisistä ohjelmanumeroista, kuten spontaaneista sienireissuista.
+            </p>
+        </section>
+        <section id="schedule" class="content-section">
+            <h2>Ohjelma</h2>
+            <p>
+                Alustava ohjelma, ehdotuksia voi esittää Voimapuu kanavalla tai järjestäjille viestillä.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aika</th>
+                        <th>Ohjelma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Thursday -->
+                    <tr>
+                        <td class="day-header" id="torstai" colspan="5">Torstai</td>
+                    </tr>
+                    <tr>
+                        <td>Päivällä</td>
+                        <td>Hawkbacktoback</td>
+                    </tr>
+                    <tr>
+                        <td>16:00</td>
+                        <td>Hälinää</td>
+                    </tr>
+                    <tr>
+                        <td>17:00</td>
+                        <td>Maadottoituminen</td>
+                    </tr>
+                    <tr>
+                        <td>18:00</td>
+                        <td>Tiluskierros</td>
+                    </tr>
+                    <tr>
+                        <td>19:00</td>
+                        <td>Rantalava hiljenee</td>
+                    </tr>
+                    <tr>
+                        <td>20:00</td>
+                        <td>Voimajaiset</td>
+                        <!-- Friday -->
+                        <tr>
+                            <td class="day-header" id="perjantai" colspan="5">Perjantai</td>
+                        </tr>
+                        <tr>
+                            <td>Päivällä</td>
+                            <td>Openmic</td>
+                        </tr>
+                        <tr>
+                            <td>16:00</td>
+                            <td>Jooga</td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td><b>DJ illjami</b></td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td>Tiluskierros</td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td>Tarina</td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td>Rantalava hiljenee</td>
+                        </tr>
+                        <tr>
+                            <td>21:00</td>
+                            <td><b>Back 2 Sack</b></td>
+                        </tr>
+                        <tr>
+                            <td>22:00</td>
+                            <td><b>αα</b></td>
+                        </tr>
+                        <tr>
+                            <td>23:00</td>
+                            <td><a href="#artists"><b>pace</b></td>
+                        </tr>
+                        <tr>
+                            <td>0:00</td>
+                            <td><b>Likainen Alapää</b></td>
+                        </tr>
+                        <tr>
+                            <td>1:00</td>
+                            <td><b>Tsurba</b></td>
+                        </tr>
+                        <tr>
+                            <td>2:00</td>
+                            <td><b>Invariant</b></td>
+                        </tr>
+                        <tr>
+                            <td>3:00</td>
+                            <td><b>Clippin'</b></td>
+                        </tr>
+                        <!-- Saturday -->
+                        <tr>
+                            <td class="day-header" id="lauantai" colspan="5">Lauantai</td>
+                        </tr>
+                        <tr>
+                            <td>14:00</td>
+                            <td>Openmic</td>
+                        </tr>
+                        <tr>
+                            <td>16:00</td>
+                            <td>Jooga</td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td>Openmic</td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td><b>Jon Bon Joviaali</b></td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td>Tarina</td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td><b>Laurak</b></td>
+                        </tr>
+                        <tr>
+                            <td>21:00</td>
+                            <td>Rantalava hiljenee</td>
+                        </tr>
+                        <tr>
+                            <td>22:00</td>
+                            <td><b>Mkultra</b></td>
+                        </tr>
+                        <tr>
+                            <td>23:00</td>
+                            <td><b>Hemone</b></td>
+                        </tr>
+                        <tr>
+                            <td>0:00</td>
+                            <td><a href="#artists"><b>Hans Nobelander</b></td>
+                        </tr>
+                        <tr>
+                            <td>1:30</td>
+                            <td><b>House Goblin</b></td>
+                        </tr>
+                        <tr>
+                            <td>2:30</td>
+                            <td><b>Rupikonna</b></td>
+                        </tr>
+                        <tr>
+                            <td>3:30</td>
+                            <td><b>Østhøvel</b></td>
+                        </tr>
+                        <!-- Sunday -->
+                        <tr>
+                            <td class="day-header" id="sunnuntai" colspan="5">Sunnuntai</td>
+                        </tr>
+                        <tr>
+                            <td>14:00</td>
+                            <td>Jäähyväiset</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="artists" class="content-section">
+                <h2>Artistit</h2>
+                <div id="hans" class="artist">
+                    <img src="hans.jpeg" alt="Hans Nobelaner" class="artist-img">
+                    <div class="artist-info">
+                        <h3>Hans Nobelaner</h3>
+                        <p>Hans Nobelaner presents Eurohans! Vietettyään viime vuodet luonnollisessa elinympäristössään lontoolaisessa underground-skenessä Hans on jälleen valmis nousemaan maanpinnalle manner-Euroopassa muistuttamaan, kuka on todellinen 2020-luvun musiikillinen trendsetteri. Hansin kaksi vuotta hioma Eurohans-setti näkee viimein kuunvalon Voimapuun keskiyössä.</p>
+                        <br>
+                        <p>Hans esiintyy päälavalla lauantain taittuessa sunnuntaiksi.</p>
+                    </div>
+                </div>
+                <div id="pace" class="artist">
+                    <img src="pace.jpeg" alt="Pace" class="artist-img">
+                    <div class="artist-info">
+                        <h3>Pace</h3>
+                        <p>Pace tunnetaan arvaamattomista seteistään, joissa itsehillinnän puute on suorastaan tavaramerkki. Pacen musiikki liikkuu villisti mm. housen, electron ja dubstepin välillä, ilman selkeitä rajoja tai rutiineja. Pace antaa musiikin viedä ja vie kuulijansa mukanaan intensiiviseen ja mukaansatempaavaan äänimatkaan.
+                        Jokainen hänen esiintymisensä on täynnä yllättäviä käänteitä, raskaita bassolinjoja ja äkillisiä genrevaihdoksia, jotka pitävät yleisön jatkuvasti varpaillaan. Pacelle musiikki on väline, jonka avulla hän voi ilmaista itseään vapaasti ja spontaanisti, tuoden esiin oman persoonansa.</p>
+                        <br>
+                        <p>Pace esiintyy päälavalla perjantain taittuessa lauantaiksi.</p>
+                    </div>
+                </div>
+                <!-- Add more artists here -->
+            </section>
+            <section id="map" class="content-section">
+                <div class="svg-container">
+                    <img id="mapsvg" src="festivalmap.svg" alt="Festivaalikartta" />
+                </div>
+            </section>
+            <script>
         // Tab Navigation Logic
         // const buttons = document.querySelectorAll('.tab-btn');
         // const sections = document.querySelectorAll('.content-section');
@@ -264,19 +288,19 @@
         //     });
         // });
         // Function to handle tab switching
-        function switchTab(target) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            const sections = document.querySelectorAll('.content-section');
+                function switchTab(target) {
+                    const buttons = document.querySelectorAll('.tab-btn');
+                    const sections = document.querySelectorAll('.content-section');
 
-            buttons.forEach(btn => btn.classList.remove('active'));
-            sections.forEach(section => section.classList.remove('active'));
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active'));
 
-            document.querySelector(`.tab-btn[data-target="${target}"]`).classList.add('active');
-            document.getElementById(target).classList.add('active');
-        }
+                    document.querySelector(`.tab-btn[data-target="${target}"]`).classList.add('active');
+                    document.getElementById(target).classList.add('active');
+                }
 
         // Handle navigation based on hash change
-        function handleHashChange() {
+                function handleHashChange() {
             const hash = window.location.hash.substring(1); // Remove the '#'
             if (hash) {
                 switchTab(hash);

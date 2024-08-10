@@ -126,3 +126,35 @@ tr:hover {
     transition: transform 0.2s ease;
     transform-origin: center center;
 }
+/* Artist Section Styles */
+.artist {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 20px;
+}
+
+.artist-img {
+    width: 50%; /* Half of the container width */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Ensure the image covers the space */
+}
+
+.artist-info {
+    width: 50%; /* Half of the container width */
+    padding-left: 20px; /* Space between image and text */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.artist-info h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #231f20;
+}
+
+.artist-info p {
+    margin: 0;
+    line-height: 1.6;
+}

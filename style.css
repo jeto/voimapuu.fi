@@ -42,6 +42,11 @@ h1, h2, h3 {
 /* Navigation Tabs */
 nav {
     margin: 20px 0;
+    overflow-y: hidden;
+    width: 100%;
+    white-space: nowrap;
+    display: flex;
+    justify-content: safe center;
 }
 
 nav button {
@@ -49,7 +54,7 @@ nav button {
     color: #ffffff;
     border: none;
     padding: 10px 20px;
-    /* margin: 0 10px; */
+    margin: 0 2px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 1rem;

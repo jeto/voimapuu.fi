@@ -1,9 +1,6 @@
-
 /* General Styles */
 body {
     margin: 0;
-    /* font-family: Arial, sans-serif; */
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     font-family: "Nunito Sans", sans-serif;
     background-color: #eee2c8;
     color: #231f20;
@@ -39,7 +36,9 @@ header h1 {
     font-size: 3rem;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: "Amatic SC", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -48,11 +47,16 @@ h1, h2, h3 {
 /* Navigation Tabs */
 nav {
     margin: 20px 0;
-    overflow-y: hidden;
     width: 100%;
+    position: relative;
+}
+
+.menu {
+    overflow-y: hidden;
     white-space: nowrap;
     display: flex;
     justify-content: safe center;
+    transition: max-height 0.3s ease-out;
 }
 
 nav button {
@@ -71,6 +75,29 @@ nav button.active {
     color: #231f20;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    background: #231f20;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu {
+    max-height: 100px;
+    /* Set a max height for menu items */
+    overflow: hidden;
+}
+
+.menu.active {
+    max-height: 500px;
+    /* Adjust as needed */
+}
+
 /* Content Sections */
 .content-section {
     display: none;
@@ -87,18 +114,19 @@ nav button.active {
     display: block;
 }
 
- /* Table Styles */
- table {
+/* Table Styles */
+table {
     width: 90%;
     margin: 0 auto;
     border-collapse: collapse;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     background-color: #ffffff60;
     overflow: hidden;
     border-radius: 8px;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     border-bottom: 1px solid #e2e2e2;
     text-align: left;
@@ -114,15 +142,18 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background-color: #fdd6a5; /* Light Green for Hover */
+    background-color: #fdd6a5;
+    /* Light Green for Hover */
 }
 
 /* Day Header Styles */
 .day-header {
     font-size: 1.2em;
-    color: #231f20; /* Dark Slate Gray */
+    color: #231f20;
+    /* Dark Slate Gray */
     font-weight: bold;
-    background-color: #fdd6a5; /* Light Green for Days */
+    background-color: #fdd6a5;
+    /* Light Green for Days */
     border-top: 2px solid #231f20;
 }
 
@@ -137,10 +168,10 @@ tr:hover {
     transition: transform 0.2s ease;
     transform-origin: center center;
 }
+
 /* Artist Section Styles */
 .artist {
     display: flex;
-    /* align-items: center; */
     margin-bottom: 20px;
     border-bottom: 1px solid #000;
     padding-bottom: 20px;
@@ -152,7 +183,7 @@ tr:hover {
 
 @media (max-width: 800px) {
     .artist {
-      flex-direction: column !important;
+        flex-direction: column !important;
     }
 }
 
@@ -161,6 +192,7 @@ tr:hover {
     height: auto;
     border-radius: 8px;
 }
+
 @media (max-width: 800px) {
     .artist-img {
         width: 100%;
@@ -181,4 +213,26 @@ tr:hover {
 .artist-info p {
     margin: 0;
     line-height: 1.6;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

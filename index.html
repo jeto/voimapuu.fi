@@ -162,7 +162,7 @@
                         </tr>
                         <tr>
                             <td>23:00</td>
-                            <td><a href="#artists"><b>pace</b></td>
+                            <td><a href="#artists?pace"><b>pace</b></td>
                         </tr>
                         <tr>
                             <td>0:00</td>
@@ -222,7 +222,7 @@
                         </tr>
                         <tr>
                             <td>0:00</td>
-                            <td><a href="#artists"><b>Hans Nobelander</b></td>
+                            <td><a href="#artists?hans"><b>Hans Nobelander</b></td>
                         </tr>
                         <tr>
                             <td>1:30</td>
@@ -248,7 +248,6 @@
                 </table>
             </section>
             <section id="artists" class="content-section">
-                <h2>Artistit</h2>
                 <div id="hans" class="artist">
                     <img src="hans.jpeg" alt="Hans Nobelaner" class="artist-img">
                     <div class="artist-info">
@@ -276,18 +275,6 @@
                 </div>
             </section>
             <script>
-        // Tab Navigation Logic
-        // const buttons = document.querySelectorAll('.tab-btn');
-        // const sections = document.querySelectorAll('.content-section');
-        // buttons.forEach(button => {
-        //     button.addEventListener('click', () => {
-        //         buttons.forEach(btn => btn.classList.remove('active'));
-        //         sections.forEach(section => section.classList.remove('active'));
-        //         button.classList.add('active');
-        //         document.getElementById(button.dataset.target).classList.add('active');
-        //     });
-        // });
-        // Function to handle tab switching
                 function switchTab(target) {
                     const buttons = document.querySelectorAll('.tab-btn');
                     const sections = document.querySelectorAll('.content-section');
@@ -301,9 +288,18 @@
 
         // Handle navigation based on hash change
                 function handleHashChange() {
-            const hash = window.location.hash.substring(1); // Remove the '#'
+            const hash = window.location.hash.substring(1);
             if (hash) {
-                switchTab(hash);
+                // Handle artist scrolling to view
+                if (hash.substring(0,7) === "artists") {
+                    switchTab("artists");
+                    const artist = hash.substring(8)
+                    if (artist) {
+                        document.getElementById(artist).scrollIntoView(true);
+                    }
+                } else {
+                    switchTab(hash);
+                }
             } else {
                 switchTab('intro'); // Default to introduction
             }

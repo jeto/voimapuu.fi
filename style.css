@@ -14,6 +14,12 @@ body {
     min-height: 100vh;
 }
 
+a {
+    color: #231f20;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+}
+
 /* Header */
 header {
     width: 100%;
@@ -134,23 +140,36 @@ tr:hover {
 /* Artist Section Styles */
 .artist {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     margin-bottom: 20px;
     border-bottom: 1px solid #000;
     padding-bottom: 20px;
 }
 
+.artist:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 800px) {
+    .artist {
+      flex-direction: column !important;
+    }
+}
+
 .artist-img {
-    width: 50%; /* Half of the container width */
+    width: 50%;
     height: auto;
     border-radius: 8px;
-    object-fit: cover; /* Ensure the image covers the space */
+}
+@media (max-width: 800px) {
+    .artist-img {
+        width: 100%;
+    }
 }
 
 .artist-info {
-    width: 50%; /* Half of the container width */
-    padding-left: 20px; /* Space between image and text */
-    box-sizing: border-box; /* Include padding in width calculation */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .artist-info h3 {

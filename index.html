@@ -16,16 +16,29 @@
 <body>
     <header>
         <img src="voimapuualpha.png" alt="Voimapuu">
-        <!-- <h1>Voimapuu</h1> -->
     </header>
     <nav>
-        <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
         <div class="menu">
-            <button class="tab-btn active" data-target="intro">Etusivu</button>
-            <button class="tab-btn" data-target="info">Info</button>
-            <button class="tab-btn" data-target="schedule">Ohjelma</button>
-            <button class="tab-btn" data-target="artists">Artistit</button>
-            <button class="tab-btn" data-target="map">Kartta</button>
+            <button class="tab-btn active" data-target="intro">
+                <span class="icon">🏠</span>
+                <span class="text">Etusivu</span>
+            </button>
+            <button class="tab-btn" data-target="info">
+                <span class="icon">ℹ️</span>
+                <span class="text">Info</span>
+            </button>
+            <button class="tab-btn" data-target="schedule">
+                <span class="icon">📅</span>
+                <span class="text">Ohjelma</span>
+            </button>
+            <button class="tab-btn" data-target="artists">
+                <span class="icon">🎤</span>
+                <span class="text">Artistit</span>
+            </button>
+            <button class="tab-btn" data-target="map">
+                <span class="icon">🗺️</span>
+                <span class="text">Kartta</span>
+            </button>
         </div>
     </nav>
     <section id="intro" class="content-section active">
@@ -123,7 +136,8 @@
         </p>
         <h2>Hirvikärpäset</h2>
         <p>
-            Jonkun verran saattaa olla hirvikärpäsiä, joten jos on herkkä näille ötököille kannattaa valmistautua niiden läsnäoloon.
+            Jonkun verran saattaa olla hirvikärpäsiä, joten jos on herkkä näille ötököille kannattaa valmistautua niiden
+            läsnäoloon.
         </p>
     </section>
     <section id="schedule" class="content-section">
@@ -345,7 +359,7 @@
             buttons.forEach(btn => btn.classList.remove('active'));
             sections.forEach(section => section.classList.remove('active'));
 
-            document.querySelector(`.tab-btn[data-target="${target}"]`).classList.add('active');
+            document.querySelector('.tab-btn[data-target="' + target + '"]').classList.add('active');
             document.getElementById(target).classList.add('active');
         }
 
@@ -375,10 +389,6 @@
 
         window.addEventListener('load', handleHashChange);
         window.addEventListener('hashchange', handleHashChange);
-
-        document.querySelector('.hamburger').addEventListener('click', () => {
-            document.querySelector('.menu').classList.toggle('active');
-        });
     </script>
 </body>
 

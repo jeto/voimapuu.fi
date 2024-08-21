@@ -63,7 +63,7 @@ nav button {
     background-color: #231f20;
     color: #ffffff;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 10px;
     margin: 0 2px;
     cursor: pointer;
     border-radius: 5px;
@@ -182,7 +182,7 @@ tr:hover {
         display: inline-block;
     }
     nav .nav-text {
-        display: none;
+        display: none;  
     }
 }
 

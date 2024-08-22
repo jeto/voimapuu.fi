@@ -201,3 +201,7 @@ tr:hover {
     margin: 0;
     line-height: 1.6;
 }
+
+#cafe #video {
+    max-width: 100%;
+}

@@ -201,6 +201,13 @@ tr:hover {
     margin: 0;
     line-height: 1.6;
 }
+.alert {
+    background-color: #ff6f0060;
+    border: 1px dashed #231f20;
+    border-radius: 10px;
+    padding: 8px;
+
+}
 
 #cafe #video {
     max-width: 100%;

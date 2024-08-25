@@ -104,6 +104,7 @@ table {
     background-color: #ffffff60;
     overflow: hidden;
     border-radius: 8px;
+    
 }
 
 th,
@@ -111,6 +112,7 @@ td {
     padding: 12px;
     border-bottom: 1px solid #e2e2e2;
     text-align: left;
+    overflow-wrap: anywhere;
 }
 
 th {

@@ -15,4 +15,4 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "*"
         target: voimapuu.fi
-        timeout: 120
+        timeout: "120s"

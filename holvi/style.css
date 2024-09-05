@@ -13,14 +13,14 @@ body {
 
 a {
     color: #231f20;
-    /* text-decoration-line: underline;
-    text-decoration-style: wavy; */
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
 }
 
 /* Header */
 header {
     width: 100%;
-    padding: 50px;
+    padding: 50px 0;
     text-align: center;
     background-color: #231f20;
 }
@@ -54,7 +54,7 @@ nav {
     overflow-y: hidden;
     white-space: nowrap;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: safe center;
     transition: max-height 0.3s ease-out;
 }
@@ -100,79 +100,7 @@ nav .nav-icon {
     display: block;
 }
 
-/* Table Styles */
-table {
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    background-color: #ffffff60;
-    overflow: hidden;
-    border-radius: 8px;
-    
-}
-
-th,
-td {
-    padding: 12px;
-    border-bottom: 1px solid #e2e2e2;
-    text-align: left;
-    overflow-wrap: anywhere;
-}
-
-th {
-    background-color: #e6b07e;
-    color: #231f20;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f971;
-}
-
-tr:hover {
-    background-color: #fdd6a5;
-    /* Light Green for Hover */
-}
-
-/* Day Header Styles */
-.day-header {
-    font-size: 1.2em;
-    color: #231f20;
-    /* Dark Slate Gray */
-    font-weight: bold;
-    background-color: #fdd6a5;
-    /* Light Green for Days */
-    border-top: 2px solid #231f20;
-}
-
-/* Artist Section Styles */
-.artist {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: 1px dashed #231f20;
-    padding-bottom: 20px;
-}
-
-.artist:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
 @media (max-width: 800px) {
-    .artist {
-        flex-direction: column !important;
-    }
-}
-
-.artist-img {
-    width: 50%;
-    height: auto;
-    border-radius: 8px;
-}
-
-@media (max-width: 800px) {
-    .artist-img {
-        width: 100%;
-    }
     nav .nav-icon {
         display: inline-block;
     }
@@ -181,18 +109,13 @@ tr:hover {
     }
 }
 
-.artist-info {
-    padding: 20px;
-    box-sizing: border-box;
+.player {
+    width: 100%;
 }
 
-.artist-info h3 {
-    margin-top: 0;
-    font-size: 1.5rem;
-    color: #231f20;
-}
-
-.artist-info p {
-    margin: 0;
-    line-height: 1.6;
+.playercontainer {
+    background-color: #231f2033;
+    border-radius: 8px;
+    padding: 0.5em 1em;
+    margin: 1em 0;
 }

@@ -100,15 +100,6 @@ nav .nav-icon {
     display: block;
 }
 
-@media (max-width: 800px) {
-    nav .nav-icon {
-        display: inline-block;
-    }
-    nav .nav-text {
-        display: none;  
-    }
-}
-
 .player {
     width: 100%;
 }

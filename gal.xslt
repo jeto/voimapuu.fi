@@ -11,7 +11,7 @@
     .container {
         display: flex;
         flex-wrap: wrap;
-       justify-content: space-around;
+        justify-content: space-around;
     }
     img {
         object-fit: cover;
@@ -24,6 +24,7 @@
     }
     body {
         margin: 0;
+        background-color: #231f20;
     }
     </style>
 </head>

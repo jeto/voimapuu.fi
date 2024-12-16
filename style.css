@@ -20,7 +20,7 @@ a {
 /* Header */
 header {
     width: 100%;
-    padding: 50px;
+    margin: 50px;
     text-align: center;
     background-color: #231f20;
 }

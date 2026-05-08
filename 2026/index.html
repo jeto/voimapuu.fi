@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Voimapuu 2026 — tulossa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="nofollow">
+    <title>Voimapuu 2026</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        body {
+            background-color: #000;
+            background-image:
+                linear-gradient(rgba(0, 255, 0, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 0, 0.06) 1px, transparent 1px);
+            background-size: 32px 32px;
+            color: #00ff00;
+            font-family: "Amatic SC", "Courier New", monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: "Amatic SC", sans-serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            margin: 0 0 16px;
+            color: #ffff00;
+            text-shadow: 4px 4px 0 #ff00ff, 8px 8px 0 #00ffff;
+            letter-spacing: 0.08em;
+        }
+
+        .blink {
+            animation: blink 1s steps(2, start) infinite;
+            color: #ff00ff;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 24px;
+            letter-spacing: 0.2em;
+        }
+
+        @keyframes blink {
+            to { visibility: hidden; }
+        }
+
+        .gif-frame {
+            border: 6px ridge #c0c0c0;
+            padding: 12px;
+            background: #000;
+            box-shadow: 0 0 0 2px #000, 0 0 24px rgba(0, 255, 0, 0.4);
+        }
+
+        .gif-frame img {
+            display: block;
+            width: min(80vmin, 600px);
+            height: auto;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        .marquee {
+            margin-top: 32px;
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 2px dashed #00ff00;
+            border-bottom: 2px dashed #00ff00;
+            padding: 8px 0;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #00ff00;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll 18s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        a {
+            color: #00ffff;
+            margin-top: 32px;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            text-decoration: underline;
+            letter-spacing: 0.1em;
+        }
+
+        a:visited { color: #ff00ff; }
+        a:hover { background: #00ffff; color: #000; }
+    </style>
+</head>
+
+<body>
+    <h1>Voimapuu 2026</h1>
+    <p class="blink">*** TULOSSA ***</p>
+    <div class="gif-frame">
+        <img src="/under-construction.gif" alt="Under construction">
+    </div>
+    <div class="marquee">
+        <span>&#9733; Sivua rakennetaan &#9733; Best viewed in Netscape Navigator &#9733; Pysy kuulolla &#9733; Voimapuu 2026 &#9733;</span>
+    </div>
+    <a href="/">&laquo; Takaisin etusivulle</a>
+</body>
+
+</html>

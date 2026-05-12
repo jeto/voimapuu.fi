@@ -45,14 +45,14 @@
             text-align: center;
             box-sizing: border-box;
             position: relative;
+            isolation: isolate;
         }
 
         #stage {
-            isolation: isolate;
             position: fixed;
             inset: 0;
             overflow: hidden;
-            z-index: -1;
+            z-index: 0;
             background: #fff;
         }
 
@@ -73,14 +73,20 @@
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
         }
 
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
         h1 {
             font-family: 'Pilowlava', serif;
             font-size: clamp(48px, 13vw, 220px);
             line-height: 0.9;
             letter-spacing: -0.01em;
             margin: 0;
-            color: black;
-            filter: invert(1);
+            color: #fff;
             mix-blend-mode: difference;
             white-space: nowrap;
         }
@@ -159,8 +165,10 @@
             };
         });
     </script>
-    <h1>VOIMA<span class="atome">PUU</span></h1>
-    <p class="coming-soon">COMING SOON</p>
+    <div class="content">
+        <h1>VOIMA<span class="atome">PUU</span></h1>
+        <p class="coming-soon">COMING SOON</p>
+    </div>
 </body>
 
 </html>

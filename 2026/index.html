@@ -8,119 +8,157 @@
     <meta name="robots" content="nofollow">
     <title>Voimapuu 2026</title>
     <link rel="icon" type="image/x-icon" href="/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap"
-        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.2/lib/p5.min.js"></script>
     <style>
+        @font-face {
+            font-family: 'Pilowlava';
+            src: url('../fonts/Pilowlava-Regular.woff2') format('woff2'),
+                 url('../fonts/Pilowlava-Regular.woff') format('woff');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Pilowlava Atome';
+            src: url('../fonts/Pilowlava-Atome.woff2') format('woff2'),
+                 url('../fonts/Pilowlava-Atome.woff') format('woff');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Doto';
+            src: url('../fonts/Doto-VariableFont_ROND,wght.ttf') format('truetype-variations');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
         html, body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
         }
 
+        html { background-color: #fff; }
+
         body {
-            background-color: #000;
-            background-image:
-                linear-gradient(rgba(0, 255, 0, 0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 0, 0.06) 1px, transparent 1px);
-            background-size: 32px 32px;
-            color: #00ff00;
-            font-family: "Amatic SC", "Courier New", monospace;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 24px;
             box-sizing: border-box;
+            position: relative;
+        }
+
+        #stage {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+            background: #fff;
+        }
+
+        #stage canvas {
+            position: absolute;
+            top: -240px;
+            left: -240px;
+            filter: blur(63px);
+        }
+
+        #stage .grain {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 1;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
         }
 
         h1 {
-            font-family: "Amatic SC", sans-serif;
-            font-size: clamp(3rem, 10vw, 7rem);
-            margin: 0 0 16px;
-            color: #ffff00;
-            text-shadow: 4px 4px 0 #ff00ff, 8px 8px 0 #00ffff;
-            letter-spacing: 0.08em;
-        }
-
-        .blink {
-            animation: blink 1s steps(2, start) infinite;
-            color: #ff00ff;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            margin-bottom: 24px;
-            letter-spacing: 0.2em;
-        }
-
-        @keyframes blink {
-            to { visibility: hidden; }
-        }
-
-        .gif-frame {
-            border: 6px ridge #c0c0c0;
-            padding: 12px;
-            background: #000;
-            box-shadow: 0 0 0 2px #000, 0 0 24px rgba(0, 255, 0, 0.4);
-        }
-
-        .gif-frame img {
-            display: block;
-            width: min(80vmin, 600px);
-            height: auto;
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
-        }
-
-        .marquee {
-            margin-top: 32px;
-            width: 100%;
-            max-width: 800px;
-            overflow: hidden;
+            font-family: 'Pilowlava', serif;
+            font-size: clamp(48px, 13vw, 220px);
+            line-height: 0.9;
+            letter-spacing: -0.01em;
+            margin: 0;
+            color: #fff;
+            mix-blend-mode: difference;
             white-space: nowrap;
-            border-top: 2px dashed #00ff00;
-            border-bottom: 2px dashed #00ff00;
-            padding: 8px 0;
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
-            color: #00ff00;
         }
 
-        .marquee span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: scroll 18s linear infinite;
+        h1 .atome {
+            font-family: 'Pilowlava Atome', 'Pilowlava', serif;
         }
 
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
+        .coming-soon {
+            font-family: 'Doto', sans-serif;
+            font-size: clamp(16px, 3vw, 40px);
+            font-weight: 900;
+            font-variation-settings: "ROND" 100;
+            letter-spacing: 0.3em;
+            color: #000;
+            margin: 16px 0 0;
         }
-
-        a {
-            color: #00ffff;
-            margin-top: 32px;
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-            text-decoration: underline;
-            letter-spacing: 0.1em;
-        }
-
-        a:visited { color: #ff00ff; }
-        a:hover { background: #00ffff; color: #000; }
     </style>
 </head>
 
 <body>
-    <h1>Voimapuu 2026</h1>
-    <p class="blink">*** TULOSSA ***</p>
-    <div class="gif-frame">
-        <img src="/under-construction.gif" alt="Under construction">
+    <div id="stage">
+        <div class="grain"></div>
     </div>
-    <div class="marquee">
-        <span>&#9733; Sivua rakennetaan &#9733; Best viewed in Netscape Navigator &#9733; Pysy kuulolla &#9733; Voimapuu 2026 &#9733;</span>
-    </div>
-    <a href="/">&laquo; Takaisin etusivulle</a>
+    <script>
+        const CANVAS_PAD = 240;
+
+        const dirFromAngles = (azDeg, elDeg) => {
+            const az = (azDeg * Math.PI) / 180;
+            const el = (elDeg * Math.PI) / 180;
+            const cz = Math.cos(el);
+            return [Math.sin(az) * cz, Math.sin(el), -Math.cos(az) * cz];
+        };
+
+        new p5((p) => {
+            let rot = 0;
+            const stage = document.getElementById('stage');
+
+            p.setup = () => {
+                const rect = stage.getBoundingClientRect();
+                const c = p.createCanvas(
+                    rect.width + CANVAS_PAD * 2,
+                    rect.height + CANVAS_PAD * 2,
+                    p.WEBGL,
+                );
+                c.parent(stage);
+                p.pixelDensity(window.devicePixelRatio || 1);
+                p.noStroke();
+            };
+
+            p.windowResized = () => {
+                const rect = stage.getBoundingClientRect();
+                p.resizeCanvas(rect.width + CANVAS_PAD * 2, rect.height + CANVAS_PAD * 2);
+            };
+
+            p.draw = () => {
+                p.background(255);
+
+                rot += 0.005 * 3;
+                const spinDeg = (rot * 180) / Math.PI;
+                const wobbleDeg = (Math.sin(rot * 0.6) * 0.25 * 180) / Math.PI;
+
+                p.ambientLight(158, 46, 154);
+
+                const kDir = dirFromAngles(-33 + spinDeg, -19 + wobbleDeg);
+                p.directionalLight(242, 116, 13, kDir[0], kDir[1], kDir[2]);
+
+                const rDir = dirFromAngles(40 + spinDeg, 10 + wobbleDeg);
+                p.directionalLight(17, 207, 232, rDir[0], rDir[1], rDir[2]);
+
+                p.ambientMaterial(255);
+                p.specularMaterial(169, 111, 96);
+                p.shininess(0);
+
+                p.sphere(280, 96, 96);
+            };
+        });
+    </script>
+    <h1>VOIMA<span class="atome">PUU</span></h1>
+    <p class="coming-soon">COMING SOON</p>
 </body>
 
 </html>

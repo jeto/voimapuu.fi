@@ -74,14 +74,7 @@
             opacity: 1;
             mix-blend-mode: overlay;
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-        }
-
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
-        }
+        }the
 
         h1 {
             font-family: 'Pilowlava', serif;
@@ -164,6 +157,29 @@
             transform: translateX(0);
         }
         .led-item.active .led-text { color: rgba(0,0,0,1); }
+
+        .led-back {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 calc(var(--dp) * 3);
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            transition: opacity 0.4s ease;
+        }
+        .led-back.hidden { opacity: 0; pointer-events: none; }
+        .led-back-text {
+            font-family: 'Doto', sans-serif;
+            font-size: var(--led-fs);
+            font-weight: 900;
+            font-variation-settings: "ROND" 100;
+            color: #AC00AC;
+            line-height: 1;
+            display: inline-block;
+            transform: translateY(calc(var(--dp) * -1));
+        }
 
         .led-footer {
             position: fixed;
@@ -251,7 +267,7 @@
             overflow-x: auto;
             scrollbar-width: none;
             background-color: rgba(255,255,255,0.88);
-            background-image: radial-gradient(circle, rgba(0,0,0,0.1) var(--dot-r), transparent var(--dot-r));
+            background-image: radial-gradient(circle, #000 var(--dot-r), transparent var(--dot-r));
             background-size: var(--dp) var(--dp);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -292,7 +308,58 @@
             color: #fff;
         }
         #section-artistit { background: #fafaf9; }
-        #section-artist   { background: #fafaf9; }
+        #section-artist   { background: #fafaf9; overflow: hidden; }
+        #section-artist .section-inner { padding: 0; height: 100%; }
+
+        .artist-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100%;
+        }
+        @media (max-width: 900px) {
+            .artist-split { grid-template-columns: 1fr; height: auto; }
+        }
+        .artist-photo {
+            position: relative;
+            overflow: hidden;
+        }
+        .artist-photo-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        .artist-content {
+            height: 100%;
+            overflow-y: auto;
+            padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 72px);
+            box-sizing: border-box;
+        }
+        .artist-content-slot {
+            font-family: 'Doto', sans-serif;
+            font-variation-settings: "ROND" 100;
+            font-weight: 900;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: rgb(242,116,13);
+            margin: 0 0 0.75rem;
+        }
+        .artist-content-name {
+            font-family: 'Doto', sans-serif;
+            font-variation-settings: "ROND" 100;
+            font-weight: 900;
+            font-size: clamp(28px, 5vw, 56px);
+            letter-spacing: 0.02em;
+            line-height: 1;
+            color: #111;
+            margin: 0 0 1.5rem;
+        }
+        .artist-content-bio {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: clamp(14px, 1.8vw, 17px);
+            line-height: 1.7;
+            color: #444;
+        }
 
         /* ── SECTION CONTENT CONTAINER ── */
         .section-inner {
@@ -330,9 +397,9 @@
             padding: 0;
             background-image:
                 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
-                radial-gradient(ellipse at 15% 25%, rgba(158,46,154,0.55) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 70%, rgba(17,207,232,0.45) 0%, transparent 50%),
-                radial-gradient(ellipse at 55% 88%, rgba(242,116,13,0.3) 0%, transparent 45%);
+                radial-gradient(ellipse at 15% 25%, rgba(158,46,154,0.95) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 70%, rgba(17,207,232,0.38) 0%, transparent 50%),
+                radial-gradient(ellipse at 55% 88%, rgba(242,116,13,0.32) 0%, transparent 45%);
             background-color: #0d0a14;
             background-blend-mode: overlay, normal, normal, normal;
             background-size: 240px 240px, auto, auto, auto;
@@ -367,7 +434,6 @@
             line-height: 0.9;
             letter-spacing: -0.01em;
             color: #fff;
-            mix-blend-mode: difference;
             margin: 0;
         }
 
@@ -553,52 +619,84 @@
         .rule--cyan { background: linear-gradient(to right, rgb(17,207,232) 0%, rgba(17,207,232,0.4) 40%, transparent 75%); }
 
         /* ── ARTISTIT ── */
-        #section-artistit .section-inner {
-            padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 72px);
+        #section-artistit .section-inner { padding: 0; }
+
+        .artistit-intro-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-image:
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+                radial-gradient(ellipse at 12% 28%, rgba(17,207,232,0.95) 0%, transparent 55%),
+                radial-gradient(ellipse at 88% 68%, rgba(242,116,13,0.38) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 90%, rgba(17,207,232,0.32) 0%, transparent 45%);
+            background-color: #0d0a14;
+            background-blend-mode: overlay, normal, normal, normal;
+            background-size: 240px 240px, auto, auto, auto;
         }
-        .artistit-intro {
-            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-            font-size: clamp(13px, 1.5vw, 15px);
-            color: #777;
-            line-height: 1.65;
-            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-        }
+        @media (max-width: 640px) { .artistit-intro-block { grid-template-columns: 1fr; } }
+
         .artist-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(max(100px, 25%), 1fr));
+            gap: 0;
+            border-top: 2px solid #000;
+            border-left: 2px solid #000;
         }
-        @media (max-width: 900px) { .artist-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .artist-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) {
+            .artist-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         .artist-card {
-            aspect-ratio: 3/4;
-            border-radius: 8px;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            border-right: 2px solid #000;
+            border-bottom: 2px solid #000;
+        }
+        .artist-thumb {
+            flex: 2;
+            min-height: 0;
             position: relative;
             overflow: hidden;
         }
         .artist-bg { position: absolute; inset: 0; }
-        .artist-meta {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            padding: 2.5rem 1.25rem 1.25rem;
-            background: linear-gradient(to top, rgba(10,5,14,0.82) 0%, transparent 100%);
+        .artist-label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 0 0.75rem;
+            background: #fafaf9;
+            border-top: 2px solid #000;
+            position: relative;
+            overflow: hidden;
         }
-        .artist-slot {
+        .artist-label::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--hover-color);
+            transform: translateY(100%);
+            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .artist-card:hover .artist-label::before {
+            transform: translateY(0);
+        }
+        .artist-name {
+            position: relative;
+            z-index: 1;
+        }
+        .artist-card:hover .artist-name {
+            color: #fff;
+            mix-blend-mode: difference;
+        }
+        .artist-name {
             font-family: 'Doto', sans-serif;
             font-variation-settings: "ROND" 100;
             font-weight: 900;
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            color: rgb(242,116,13);
-            display: block;
-            margin-bottom: 0.35rem;
-        }
-        .artist-name {
-            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-            font-size: clamp(14px, 2vw, 17px);
-            font-weight: 600;
-            color: #fff;
-            line-height: 1.2;
+            font-size: clamp(16px, 2.5vw, 28px);
+            letter-spacing: 0.04em;
+            color: #111;
+            line-height: 1.1;
         }
     </style>
 </head>
@@ -608,6 +706,9 @@
         <div class="grain"></div>
     </div>
     <nav class="led-nav">
+        <div class="led-back hidden">
+            <span class="led-back-text">«</span>
+        </div>
         <div class="led-item"><span class="led-text">INFO</span></div>
         <div class="led-item"><span class="led-text">OHJELMA</span></div>
         <div class="led-item"><span class="led-text">ARTISTIT</span></div>
@@ -847,9 +948,14 @@
         </section>
         <section id="section-artistit" class="page-section">
             <div class="section-inner">
-                <div class="section-label label--cyan">ARTISTIT</div>
-                <hr class="section-rule rule--cyan">
-                <p class="artistit-intro">Lineup julkaistaan lähempänä tapahtumaa.</p>
+                <div class="artistit-intro-block">
+                    <div class="intro-quote">
+                        <p class="intro-quote-text">Niin metsä tanssii kuin sinne soitetaan</p>
+                    </div>
+                    <div class="intro-text">
+                        <p>Voimapuun artistit tuovat mukanaan maailman laidoilta kerättyä musiikkia, tunnelmaa ja taikaa metsän helmaan. Lineup täydentyy tapahtuman lähentyessä.</p>
+                    </div>
+                </div>
                 <div class="artist-grid" id="artist-grid"></div>
             </div>
         </section>
@@ -876,6 +982,9 @@
             }
 
             const footer = document.querySelector('.led-footer');
+            const backBtn = document.querySelector('.led-back');
+            let activeSec = null;
+            let cleanupTimer = null;
 
             function render({ section, slug }) {
                 const isLanding = section === 'landing';
@@ -885,10 +994,34 @@
 
                 landing.classList.toggle('hidden', !isLanding);
                 if (footer) footer.classList.toggle('hidden', !isLanding);
+                if (backBtn) backBtn.classList.toggle('hidden', isLanding);
 
-                document.querySelectorAll('.page-section').forEach(s => s.classList.remove('visible'));
+                if (cleanupTimer) clearTimeout(cleanupTimer);
+
                 if (!isLanding) {
-                    document.getElementById(`section-${section}`)?.classList.add('visible');
+                    const next = document.getElementById(`section-${section}`);
+                    if (next) {
+                        // New section fades in on top — old stays visible so no white flash
+                        next.style.zIndex = '3';
+                        next.classList.add('visible');
+                        const prev = activeSec;
+                        cleanupTimer = setTimeout(() => {
+                            if (prev && prev !== next) {
+                                prev.style.zIndex = '0'; // sink below incoming section
+                                prev.classList.remove('visible');
+                                setTimeout(() => { prev.style.zIndex = ''; }, 450);
+                            }
+                            next.style.zIndex = '';
+                        }, 600);
+                        activeSec = next;
+                    }
+                } else {
+                    // Back to landing — fade out current section normally
+                    if (activeSec) {
+                        activeSec.classList.remove('visible');
+                        activeSec.style.zIndex = '';
+                        activeSec = null;
+                    }
                 }
 
                 document.querySelectorAll('.led-item').forEach((item, i) => {
@@ -912,6 +1045,8 @@
             document.querySelectorAll('.led-item').forEach((item, i) => {
                 item.addEventListener('click', () => navigate(`${BASE}/${NAV_SECTIONS[i]}`));
             });
+
+            if (backBtn) backBtn.addEventListener('click', () => navigate(BASE));
 
             window.addEventListener('popstate', () => render(getRoute(window.location.pathname)));
 
@@ -937,6 +1072,8 @@
                 return artistsCache;
             }
 
+            const PALETTE_COLORS = ['rgb(158,46,154)', 'rgb(242,116,13)', 'rgb(17,207,232)'];
+
             async function renderArtistGrid() {
                 const artists = await loadArtists();
                 const grid = document.getElementById('artist-grid');
@@ -945,11 +1082,12 @@
                     const bgStyle = a.image
                         ? `background: url('${BASE}/${a.image}') center/cover no-repeat`
                         : `background: ${GRADIENTS[i % GRADIENTS.length]}`;
-                    const slot = [a.slot, a.venue].filter(Boolean).join(' · ');
-                    return `<div class="artist-card" data-slug="${a.slug}" style="cursor:pointer">
-                        <div class="artist-bg" style="${bgStyle}"></div>
-                        <div class="artist-meta">
-                            <span class="artist-slot">${slot}</span>
+                    const hoverColor = PALETTE_COLORS[i % PALETTE_COLORS.length];
+                    return `<div class="artist-card" data-slug="${a.slug}" style="--hover-color:${hoverColor}">
+                        <div class="artist-thumb">
+                            <div class="artist-bg" style="${bgStyle}"></div>
+                        </div>
+                        <div class="artist-label">
                             <div class="artist-name">${a.name}</div>
                         </div>
                     </div>`;
@@ -968,10 +1106,16 @@
                     ? `background: url('${BASE}/${a.image}') center/cover no-repeat`
                     : `background: ${GRADIENTS[artists.indexOf(a) % GRADIENTS.length]}`;
                 const slot = [a.slot, a.venue].filter(Boolean).join(' · ');
-                detail.innerHTML = `<div class="artist-detail-hero" style="${bgStyle}; height:40vh; border-radius:8px; margin-bottom:2rem;"></div>
-                    <p style="font-family:'Doto',sans-serif;font-variation-settings:'ROND' 100;font-weight:900;font-size:11px;letter-spacing:0.1em;color:rgb(242,116,13);margin:0 0 0.5rem">${slot}</p>
-                    <h2 style="font-family:'Doto',sans-serif;font-variation-settings:'ROND' 100;font-weight:900;font-size:clamp(24px,4vw,40px);margin:0 0 1rem;color:#111">${a.name}</h2>
-                    ${a.bio ? `<p style="font-family:system-ui,sans-serif;font-size:clamp(14px,1.8vw,17px);line-height:1.7;color:#444;max-width:640px">${a.bio}</p>` : ''}`;
+                detail.innerHTML = `<div class="artist-split">
+                        <div class="artist-photo">
+                            <div class="artist-photo-bg" style="${bgStyle}"></div>
+                        </div>
+                        <div class="artist-content">
+                            ${slot && slot !== 'TBA · TBA' ? `<p class="artist-content-slot">${slot}</p>` : ''}
+                            <h2 class="artist-content-name">${a.name}</h2>
+                            ${a.bio ? `<p class="artist-content-bio">${a.bio}</p>` : ''}
+                        </div>
+                    </div>`;
             }
 
             async function initFooterMarquee() {

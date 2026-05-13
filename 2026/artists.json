@@ -4,34 +4,41 @@
     "slug": "likainen-alapaa",
     "slot": "TBA",
     "venue": "TBA",
-    "image": "../2024/jere.jpeg"
+    "image": "likainenalapaa.jpg"
   },
   {
     "name": "House Goblin",
     "slug": "house-goblin",
     "slot": "TBA",
     "venue": "TBA",
-    "image": "../2024/house_goblin.jpeg"
+    "image": "housegoblin.jpg"
   },
   {
     "name": "Østhøvel",
     "slug": "osthovel",
     "slot": "TBA",
     "venue": "TBA",
-    "image": "../2024/osthovel.jpeg"
+    "image": "osthovel.jpg"
   },
   {
     "name": "Rupikonna",
     "slug": "rupikonna",
     "slot": "TBA",
     "venue": "TBA",
-    "image": "../2024/rupikonna.jpeg"
+    "image": "rupikonna.jpg"
   },
   {
     "name": "Pace",
     "slug": "pace",
     "slot": "TBA",
     "venue": "TBA",
-    "image": "../2024/pace.jpeg"
+    "image": "pace.jpg"
+  },
+  {
+    "name": "Jerry Cheese",
+    "slug": "jerry-cheese",
+    "slot": "TBA",
+    "venue": "TBA",
+    "image": "jerrycheese.jpg"
   }
 ]

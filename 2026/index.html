@@ -98,7 +98,7 @@
             font-family: 'Pilowlava Atome', 'Pilowlava', serif;
         }
 
-        .coming-soon {
+        .subtitle {
             position: relative;
             z-index: 2;
             font-family: 'Doto', sans-serif;
@@ -110,6 +110,59 @@
             margin: 16px 0 0;
             mix-blend-mode: normal;
         }
+
+        :root {
+            --dp: 2px;
+            --led-fs: 20px;
+            --dot-r: 0.65px;
+        }
+
+        @media (min-width: 600px) {
+            :root {
+                --dp: 3px;
+                --led-fs: 30px;
+                --dot-r: 1px;
+            }
+        }
+
+        .led-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: max(calc(15 * var(--dp)), 44px);
+            background-image: radial-gradient(circle, rgba(0,0,0,0.15) var(--dot-r), transparent var(--dot-r));
+            background-size: var(--dp) var(--dp);
+            overflow: hidden;
+        }
+
+        .led-item {
+            flex: 0 0 auto;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 calc(var(--dp) * 3);
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .led-text {
+            font-family: 'Doto', sans-serif;
+            font-size: var(--led-fs);
+            font-weight: 900;
+            font-variation-settings: "ROND" 100;
+            color: rgba(0,0,0,0.85);
+            white-space: nowrap;
+            line-height: 1;
+            display: inline-block;
+            transform: translateX(0);
+        }
     </style>
 </head>
 
@@ -117,6 +170,11 @@
     <div id="stage">
         <div class="grain"></div>
     </div>
+    <nav class="led-nav">
+        <div class="led-item"><span class="led-text">INFO</span></div>
+        <div class="led-item"><span class="led-text">OHJELMA</span></div>
+        <div class="led-item"><span class="led-text">ARTISTIT</span></div>
+    </nav>
     <script>
         const CANVAS_PAD = 240;
 
@@ -198,9 +256,49 @@
             });
         })();
     </script>
+    <script>
+        (function () {
+            const DP = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dp'));
+            const STEP_MS = 50;
+
+            document.querySelectorAll('.led-item').forEach(item => {
+                const text = item.querySelector('.led-text');
+                let running = false, offset = 0, lastStep = 0, rafId;
+
+                function tick(t) {
+                    if (!running) return;
+                    if (t - lastStep >= STEP_MS) {
+                        offset -= DP;
+                        if (offset < -(text.offsetWidth + DP * 2)) {
+                            offset = item.clientWidth + DP;
+                        }
+                        text.style.transform = `translateX(${offset}px)`;
+                        lastStep = t;
+                    }
+                    rafId = requestAnimationFrame(tick);
+                }
+
+                function start() {
+                    if (running) return;
+                    running = true;
+                    rafId = requestAnimationFrame(tick);
+                }
+
+                function stop() {
+                    running = false;
+                    cancelAnimationFrame(rafId);
+                    offset = 0;
+                    text.style.transform = '';
+                }
+
+                item.addEventListener('mouseenter', start);
+                item.addEventListener('mouseleave', stop);
+            });
+        })();
+    </script>
     <div class="content">
         <h1>VOIMA<span class="atome">PUU</span></h1>
-        <p class="coming-soon">COMING SOON</p>
+        <p class="subtitle">27.8. – 30.8.2026</p>
     </div>
 </body>
 

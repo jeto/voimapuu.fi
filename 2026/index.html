@@ -8,6 +8,9 @@
     <meta name="robots" content="nofollow">
     <title>Voimapuu 2026</title>
     <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="preload" href="../fonts/Pilowlava-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/Pilowlava-Atome.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/Doto-VariableFont_ROND,wght.ttf" as="font" type="font/ttf" crossorigin>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.2/lib/p5.min.js"></script>
     <style>
         @font-face {
@@ -26,7 +29,7 @@
             font-family: 'Doto';
             src: url('../fonts/Doto-VariableFont_ROND,wght.ttf') format('truetype-variations');
             font-weight: 100 900;
-            font-display: swap;
+            font-display: block;
         }
 
         html, body {
@@ -167,6 +170,33 @@
                 p.sphere(280, 96, 96);
             };
         });
+    </script>
+    <script>
+        (function () {
+            const grain = document.querySelector('.grain');
+            const svgs = [0, 13, 27, 44, 78, 103, 156, 211].map(seed =>
+                `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' seed='${seed}' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>`
+            );
+            const uris = svgs.map(s => `url("${s}")`);
+
+            let i = 0, last = 0;
+            function tick(t) {
+                if (t - last >= 67) {
+                    grain.style.backgroundImage = uris[i++ % uris.length];
+                    last = t;
+                }
+                requestAnimationFrame(tick);
+            }
+
+            let loaded = 0;
+            svgs.forEach(src => {
+                const img = new Image();
+                img.onload = img.onerror = () => {
+                    if (++loaded === svgs.length) requestAnimationFrame(tick);
+                };
+                img.src = src;
+            });
+        })();
     </script>
     <div class="content">
         <h1>VOIMA<span class="atome">PUU</span></h1>

@@ -165,56 +165,56 @@
         }
         .led-item.active .led-text { color: rgba(0,0,0,1); }
 
+        .led-footer {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 2;
+            height: max(calc(15 * var(--dp)), 44px);
+            background-image: radial-gradient(circle, rgba(0,0,0,0.15) var(--dot-r), transparent var(--dot-r));
+            background-size: var(--dp) var(--dp);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            transition: opacity 0.4s ease;
+        }
+        .led-footer.hidden { opacity: 0; pointer-events: none; }
+
+        .footer-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .footer-text {
+            font-family: 'Doto', sans-serif;
+            font-size: var(--led-fs);
+            font-weight: 900;
+            font-variation-settings: "ROND" 100;
+            color: rgba(0,0,0,0.7);
+            white-space: nowrap;
+            line-height: 1;
+            position: absolute;
+            top: 50%;
+            left: 0;
+        }
+
         /* Sphere and landing transitions */
         #stage { transition: opacity 0.7s ease; }
         #stage.faded { opacity: 0; pointer-events: none; }
         .content { transition: opacity 0.4s ease; }
         .content.hidden { opacity: 0; pointer-events: none; }
 
-        /* Background gradient system */
-        #bg {
+        /* Faint global gradient wash — palette bleeds through all sections */
+        body::before {
+            content: '';
             position: fixed;
             inset: 0;
-            z-index: 0;
+            background:
+                radial-gradient(ellipse at 8% 18%, rgba(158,46,154,0.055) 0%, transparent 50%),
+                radial-gradient(ellipse at 92% 75%, rgba(17,207,232,0.045) 0%, transparent 50%),
+                radial-gradient(ellipse at 55% 95%, rgba(242,116,13,0.04) 0%, transparent 45%);
             pointer-events: none;
-        }
-        .bg-layer {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-        .bg-layer.active { opacity: 1; }
-        #bg-info {
-            background:
-                radial-gradient(ellipse at 15% 25%, rgba(158,46,154,0.65) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 70%, rgba(17,207,232,0.55) 0%, transparent 50%),
-                radial-gradient(ellipse at 55% 85%, rgba(158,46,154,0.3) 0%, transparent 45%);
-        }
-        #bg-ohjelma {
-            background:
-                radial-gradient(ellipse at 75% 30%, rgba(242,116,13,0.6) 0%, transparent 55%),
-                radial-gradient(ellipse at 20% 65%, rgba(158,46,154,0.45) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 90%, rgba(242,116,13,0.3) 0%, transparent 45%);
-        }
-        #bg-artistit {
-            background:
-                radial-gradient(ellipse at 25% 55%, rgba(17,207,232,0.58) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 25%, rgba(242,116,13,0.48) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 80%, rgba(17,207,232,0.3) 0%, transparent 45%);
-        }
-        #bg-artist {
-            background:
-                radial-gradient(ellipse at 70% 60%, rgba(17,207,232,0.52) 0%, transparent 55%),
-                radial-gradient(ellipse at 25% 30%, rgba(242,116,13,0.42) 0%, transparent 50%),
-                radial-gradient(ellipse at 45% 85%, rgba(158,46,154,0.3) 0%, transparent 45%);
-        }
-        #bg-grain {
-            position: absolute;
-            inset: 0;
-            mix-blend-mode: overlay;
-            opacity: 0.5;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+            z-index: 0;
         }
 
         /* Page sections */
@@ -229,6 +229,7 @@
             -webkit-overflow-scrolling: touch;
             opacity: 0;
             visibility: hidden;
+            text-align: left;
             transition: opacity 0.4s ease, visibility 0s 0.4s;
         }
         .page-section.visible {
@@ -237,18 +238,7 @@
             transition: opacity 0.4s ease 0.15s, visibility 0s;
         }
         .section-inner {
-            position: relative;
-            z-index: 1;
-            max-width: 720px;
-            width: calc(100% - 2rem);
-            margin: 1.5rem auto;
-            padding: 2rem 2rem 3rem;
-            background: rgba(255,255,255,0.18);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.25);
-            text-align: left;
+            padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 72px);
             box-sizing: border-box;
         }
 
@@ -288,171 +278,332 @@
         .sub-nav a:hover { color: rgba(0,0,0,0.7); }
         .sub-nav a.active {
             color: rgba(0,0,0,1);
-            border-bottom-color: rgba(0,0,0,0.5);
         }
 
-        /* Content typography */
-        .section-inner h2 {
+        /* ── SECTION BACKGROUNDS ── */
+        #section-info    { background: #fff; }
+        #section-ohjelma {
+            background-image:
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+                radial-gradient(ellipse at 85% 15%, rgba(242,116,13,0.22) 0%, transparent 50%),
+                radial-gradient(ellipse at 15% 85%, rgba(158,46,154,0.28) 0%, transparent 50%);
+            background-color: #100b15;
+            background-blend-mode: overlay, normal, normal;
+            color: #fff;
+        }
+        #section-artistit { background: #fafaf9; }
+        #section-artist   { background: #fafaf9; }
+
+        /* ── SECTION CONTENT CONTAINER ── */
+        .section-inner {
+            padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 72px);
+            box-sizing: border-box;
+        }
+
+        /* ── INFO ── */
+        #section-info .section-inner { padding: 0; }
+
+        .info-anchor { scroll-margin-top: 60px; }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        @media (max-width: 640px) {
+            .info-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Info section — light with subtle grain */
+        #section-info {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+            background-color: #fff;
+            background-size: 240px 240px;
+        }
+
+        /* Intro — full-width, own dark gradient + grain */
+        .info-intro {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin: 0;
+            padding: 0;
+            background-image:
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+                radial-gradient(ellipse at 15% 25%, rgba(158,46,154,0.55) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 70%, rgba(17,207,232,0.45) 0%, transparent 50%),
+                radial-gradient(ellipse at 55% 88%, rgba(242,116,13,0.3) 0%, transparent 45%);
+            background-color: #0d0a14;
+            background-blend-mode: overlay, normal, normal, normal;
+            background-size: 240px 240px, auto, auto, auto;
+        }
+        @media (max-width: 640px) {
+            .info-intro { grid-template-columns: 1fr; }
+        }
+        .intro-text {
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+        }
+        .intro-text p {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: clamp(13px, 1.5vw, 15px);
+            font-weight: 500;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.85);
+            margin: 0 0 0.4rem;
+        }
+        .intro-text p:last-child { margin-bottom: 0; }
+        .intro-quote {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            text-align: center;
+        }
+        .intro-quote-text {
+            font-family: 'Pilowlava', serif;
+            font-size: clamp(36px, 5vw, 80px);
+            line-height: 0.9;
+            letter-spacing: -0.01em;
+            color: #fff;
+            mix-blend-mode: difference;
+            margin: 0;
+        }
+
+        .info-card--purple { --card-accent: rgb(158,46,154); }
+        .info-card--orange { --card-accent: rgb(242,116,13); }
+        .info-card--cyan   { --card-accent: rgb(17,207,232); }
+
+        .info-anchor.info-card {
+            position: relative;
+            background: transparent;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .info-anchor.info-card h2 {
             font-family: 'Doto', sans-serif;
             font-variation-settings: "ROND" 100;
             font-weight: 900;
-            font-size: clamp(18px, 4vw, 26px);
             letter-spacing: 0.04em;
-            margin: 2.5rem 0 0.6rem;
-            color: #111;
-        }
-        .section-inner h2:first-child { margin-top: 0; }
-        .section-inner p,
-        .section-inner li {
-            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-            font-size: clamp(15px, 2vw, 17px);
-            line-height: 1.65;
-            color: #1a1a1a;
             margin: 0 0 0.75rem;
         }
-        .section-inner ul { padding-left: 1.5rem; margin: 0 0 0.75rem; }
-        .section-inner a { color: inherit; }
-        .info-anchor { scroll-margin-top: 60px; }
-
-        /* INFO: transparent wrapper, each anchor is its own frosted card */
-        #section-info .section-inner {
-            background: transparent;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border: none;
+        .info-anchor.info-card > h2:first-of-type {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding-left: 0;
-            padding-right: 0;
-            margin-top: 0;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: clamp(24px, 3vw, 34px);
+            color: var(--card-accent);
+            text-shadow:
+                -1px -1px 0 #fff, 1px -1px 0 #fff,
+                -1px  1px 0 #fff, 1px  1px 0 #fff,
+                 0   -1px 0 #fff, 0    1px 0 #fff,
+                -1px  0   0 #fff, 1px  0   0 #fff;
+            margin-bottom: 1rem;
+            white-space: nowrap;
         }
-        #section-info .info-anchor {
-            position: relative;
-            z-index: 1;
-            background: rgba(255,255,255,0.52);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.45);
-            padding: 2rem;
+        .info-anchor.info-card > h2:first-of-type::before {
+            content: '';
+            flex: 0 0 1rem;
+            height: 4px;
+            background-image: radial-gradient(circle, var(--card-accent) 1.5px, transparent 1.5px);
+            background-size: 5px 4px;
+            opacity: 0.7;
         }
+        .info-anchor.info-card > h2:first-of-type::after {
+            content: '';
+            flex: 1;
+            height: 4px;
+            background-image: radial-gradient(circle, var(--card-accent) 1.5px, transparent 1.5px);
+            background-size: 5px 4px;
+            opacity: 0.7;
+        }
+        .info-anchor.info-card > h2:not(:first-of-type) {
+            font-size: clamp(17px, 2.2vw, 20px);
+            color: #555;
+            margin-top: 1.25rem;
+        }
+        .info-anchor.info-card p,
+        .info-anchor.info-card li {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: clamp(13px, 1.5vw, 15px);
+            line-height: 1.65;
+            color: #555;
+            margin: 0 0 0.4rem;
+        }
+        .info-anchor.info-card ul { padding-left: 1.2rem; margin: 0.25rem 0 0.4rem; }
+        .info-anchor.info-card a { color: inherit; }
 
-        /* Section-specific gradient backgrounds (source for backdrop-filter) */
-        #section-info {
-            background:
-                radial-gradient(ellipse at 15% 25%, rgba(158,46,154,0.65) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 70%, rgba(17,207,232,0.55) 0%, transparent 50%),
-                radial-gradient(ellipse at 55% 85%, rgba(158,46,154,0.3) 0%, transparent 45%);
+        /* ── OHJELMA ── */
+        #section-ohjelma { overflow: hidden; display: flex; flex-direction: column; }
+        .ohjelma-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            flex: 1;
+            min-height: 0;
         }
-        #section-ohjelma {
-            background:
-                radial-gradient(ellipse at 75% 30%, rgba(242,116,13,0.6) 0%, transparent 55%),
-                radial-gradient(ellipse at 20% 65%, rgba(158,46,154,0.45) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 90%, rgba(242,116,13,0.3) 0%, transparent 45%);
+        @media (max-width: 900px) {
+            .ohjelma-split { grid-template-columns: 1fr; }
+            .ohjelma-image { display: none; }
         }
-        #section-artistit {
-            background:
-                radial-gradient(ellipse at 25% 55%, rgba(17,207,232,0.58) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 25%, rgba(242,116,13,0.48) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 80%, rgba(17,207,232,0.3) 0%, transparent 45%);
+        .ohjelma-schedule {
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
-        #section-artist {
-            background:
-                radial-gradient(ellipse at 70% 60%, rgba(17,207,232,0.52) 0%, transparent 55%),
-                radial-gradient(ellipse at 25% 30%, rgba(242,116,13,0.42) 0%, transparent 50%),
-                radial-gradient(ellipse at 45% 85%, rgba(158,46,154,0.3) 0%, transparent 45%);
+        .ohjelma-image {
+            height: 100%;
+            overflow: hidden;
         }
-        #section-info .info-anchor h2:first-child { margin-top: 0; }
-
-        .info-alert {
-            background: rgba(0,0,0,0.05);
-            border-left: 3px solid rgba(0,0,0,0.25);
-            padding: 1rem 1.25rem;
-            border-radius: 0 4px 4px 0;
-            margin-bottom: 1.5rem;
+        .ohjelma-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
-        .info-alert h2 { margin-top: 0; }
-
-        /* OHJELMA */
         #section-ohjelma .section-inner {
-            background: transparent;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border: none;
+            padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 72px);
+        }
+
+        .ohjelma-anchor { scroll-margin-top: 60px; }
+
+        .day-label {
+            font-family: 'Doto', sans-serif;
+            font-variation-settings: "ROND" 100;
+            font-weight: 900;
+            font-size: clamp(18px, 3vw, 26px);
+            letter-spacing: 0.04em;
+            color: rgba(255,255,255,0.9);
+            margin: 0 0 1.25rem;
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding-left: 0;
-            padding-right: 0;
-            margin-top: 0;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
         }
-        .ohjelma-anchor {
-            scroll-margin-top: 60px;
-            position: relative;
-            z-index: 1;
-            background: rgba(255,255,255,0.52);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.45);
-            padding: 2rem;
+        .day-label::after {
+            content: '';
+            flex: 1;
+            height: 3px;
+            background-image: radial-gradient(circle, rgba(242,116,13,0.9) 1.5px, transparent 1.5px);
+            background-size: 5px 3px;
+            opacity: 0.7;
         }
-        .ohjelma-anchor h2 {
-            margin-top: 0;
-            margin-bottom: 1.25rem;
-        }
+
         .schedule-table {
             width: 100%;
+            max-width: 760px;
             border-collapse: collapse;
             font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-            font-size: clamp(14px, 2vw, 16px);
+            font-size: clamp(13px, 1.8vw, 16px);
+            margin-bottom: clamp(2rem, 4vw, 3rem);
         }
         .schedule-table th {
             font-family: 'Doto', sans-serif;
             font-variation-settings: "ROND" 100;
             font-weight: 900;
-            font-size: clamp(11px, 1.5vw, 13px);
-            letter-spacing: 0.08em;
-            color: rgba(0,0,0,0.45);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.28);
             text-align: left;
-            padding: 0 0.75rem 0.6rem;
-            border-bottom: 1px solid rgba(0,0,0,0.12);
+            padding: 0 1rem 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
-        .schedule-table th:first-child { padding-left: 0; }
+        .schedule-table th:first-child,
+        .schedule-table td:first-child { padding-left: 0; }
+        .schedule-table th:last-child { text-align: right; }
         .schedule-table td {
-            padding: 0.55rem 0.75rem;
-            color: #1a1a1a;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 0.7rem 1rem 0.7rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.6);
             vertical-align: top;
-            line-height: 1.4;
+            line-height: 1.35;
         }
         .schedule-table td:first-child {
-            padding-left: 0;
-            white-space: nowrap;
-            color: rgba(0,0,0,0.45);
-            font-variant-numeric: tabular-nums;
+            color: rgba(255,255,255,0.28);
             width: 5.5rem;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
         }
         .schedule-table td:last-child {
-            color: rgba(0,0,0,0.5);
-            white-space: nowrap;
+            color: rgba(255,255,255,0.28);
             text-align: right;
+            white-space: nowrap;
         }
         .schedule-table tr:last-child td { border-bottom: none; }
-        .schedule-table .act { font-weight: 600; color: #111; }
-        .schedule-table .note { color: rgba(0,0,0,0.45); font-style: italic; }
+        .schedule-table .act  { font-weight: 600; color: #fff; }
+        .schedule-table .note { font-style: italic; color: rgba(255,255,255,0.35); }
+
+        /* ── SECTION LABELS (shared) ── */
+        .section-label {
+            font-family: 'Doto', sans-serif;
+            font-size: clamp(28px, 6vw, 72px);
+            font-weight: 900;
+            font-variation-settings: "ROND" 100;
+            letter-spacing: 0.04em;
+            line-height: 1;
+            margin-bottom: 0.25em;
+        }
+        .label--cyan   { color: rgb(17,207,232); }
+        .section-rule {
+            height: 2px;
+            width: 100%;
+            margin-bottom: clamp(2rem, 4vw, 3.5rem);
+            border: none;
+        }
+        .rule--cyan { background: linear-gradient(to right, rgb(17,207,232) 0%, rgba(17,207,232,0.4) 40%, transparent 75%); }
+
+        /* ── ARTISTIT ── */
+        #section-artistit .section-inner {
+            padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 72px);
+        }
+        .artistit-intro {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: clamp(13px, 1.5vw, 15px);
+            color: #777;
+            line-height: 1.65;
+            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+        }
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 900px) { .artist-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .artist-grid { grid-template-columns: 1fr 1fr; } }
+        .artist-card {
+            aspect-ratio: 3/4;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .artist-bg { position: absolute; inset: 0; }
+        .artist-meta {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 2.5rem 1.25rem 1.25rem;
+            background: linear-gradient(to top, rgba(10,5,14,0.82) 0%, transparent 100%);
+        }
+        .artist-slot {
+            font-family: 'Doto', sans-serif;
+            font-variation-settings: "ROND" 100;
+            font-weight: 900;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: rgb(242,116,13);
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+        .artist-name {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: clamp(14px, 2vw, 17px);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
     </style>
 </head>
 
 <body>
-    <div id="bg" aria-hidden="true">
-        <div class="bg-layer" id="bg-info"></div>
-        <div class="bg-layer" id="bg-ohjelma"></div>
-        <div class="bg-layer" id="bg-artistit"></div>
-        <div class="bg-layer" id="bg-artist"></div>
-        <div id="bg-grain"></div>
-    </div>
     <div id="stage">
         <div class="grain"></div>
     </div>
@@ -461,6 +612,9 @@
         <div class="led-item"><span class="led-text">OHJELMA</span></div>
         <div class="led-item"><span class="led-text">ARTISTIT</span></div>
     </nav>
+    <footer class="led-footer">
+        <div class="footer-inner"></div>
+    </footer>
     <script>
         const CANVAS_PAD = 240;
 
@@ -547,39 +701,72 @@
             const DP = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dp'));
             const STEP_MS = 50;
 
-            document.querySelectorAll('.led-item').forEach(item => {
-                const text = item.querySelector('.led-text');
-                let running = false, offset = 0, lastStep = 0, rafId;
+            function init() {
+                document.querySelectorAll('.led-item').forEach(item => {
+                    const text = item.querySelector('.led-text');
+                    const itemW  = item.clientWidth;
+                    const textW  = text.offsetWidth;
+                    // naturalLeft: where the text's left edge sits inside the item
+                    // (accounts for flex padding so ghost aligns exactly with primary)
+                    const naturalLeft = text.getBoundingClientRect().left - item.getBoundingClientRect().left;
+                    const cl = itemW;
 
-                function tick(t) {
-                    if (!running) return;
-                    if (t - lastStep >= STEP_MS) {
-                        offset -= DP;
-                        if (offset < -(text.offsetWidth + DP * 2)) {
-                            offset = item.clientWidth + DP;
+                    item.style.position = 'relative';
+                    const ghost = text.cloneNode(true);
+                    ghost.setAttribute('aria-hidden', 'true');
+                    ghost.style.cssText = `position:absolute;left:${naturalLeft}px;top:50%;`
+                        + `transform:translateX(${cl}px) translateY(-50%);pointer-events:none`;
+                    item.appendChild(ghost);
+
+                    let running = false, offset = 0, lastStep = 0, rafId;
+                    let hovered = false;
+
+                    function tick(t) {
+                        if (!running) return;
+                        if (t - lastStep >= STEP_MS) {
+                            offset -= DP;
+                            if (offset < -cl) offset += cl;
+                            text.style.transform  = `translateX(${offset}px)`;
+                            ghost.style.transform = `translateX(${offset + cl}px) translateY(-50%)`;
+                            lastStep = t;
                         }
-                        text.style.transform = `translateX(${offset}px)`;
-                        lastStep = t;
+                        rafId = requestAnimationFrame(tick);
                     }
-                    rafId = requestAnimationFrame(tick);
-                }
 
-                function start() {
-                    if (running) return;
-                    running = true;
-                    rafId = requestAnimationFrame(tick);
-                }
+                    function start() {
+                        if (running) return;
+                        offset = 0;
+                        text.style.transform  = '';
+                        ghost.style.transform = `translateX(${cl}px) translateY(-50%)`;
+                        running = true;
+                        rafId = requestAnimationFrame(tick);
+                    }
 
-                function stop() {
-                    running = false;
-                    cancelAnimationFrame(rafId);
-                    offset = 0;
-                    text.style.transform = '';
-                }
+                    function stop() {
+                        running = false;
+                        cancelAnimationFrame(rafId);
+                        offset = 0;
+                        text.style.transform  = '';
+                        ghost.style.transform = `translateX(${cl}px) translateY(-50%)`;
+                    }
 
-                item.addEventListener('mouseenter', start);
-                item.addEventListener('mouseleave', stop);
-            });
+                    function syncActive() {
+                        if (item.classList.contains('active')) start();
+                        else if (!hovered) stop();
+                    }
+
+                    item.addEventListener('mouseenter', () => { hovered = true; start(); });
+                    item.addEventListener('mouseleave', () => { hovered = false; syncActive(); });
+
+                    new MutationObserver(syncActive)
+                        .observe(item, { attributes: true, attributeFilter: ['class'] });
+
+                    syncActive();
+                });
+            }
+
+            // Wait for fonts so offsetWidth/clientWidth reflect the actual Doto glyphs
+            document.fonts.ready.then(init);
         })();
     </script>
     <div class="content">
@@ -588,141 +775,82 @@
     </div>
     <main>
         <section id="section-info" class="page-section">
-            <nav class="sub-nav" id="info-subnav">
-                <a href="#intro">Intro</a>
-                <a href="#saapuminen">Saapuminen</a>
-                <a href="#ruoka">Ruoka</a>
-                <a href="#hygienia">Hygienia</a>
-                <a href="#ilmoitustaulu">Ilmoitustaulu</a>
-                <a href="#kartta">Kartta</a>
-            </nav>
             <div class="section-inner">
-                <div id="intro" class="info-anchor">
-                    <h2>Tervetuloa Voimapuuhun!</h2>
-                    <p>Rakkaat metsän ystävät, sielun tanssijat ja luonnon lapset, kutsumme teidät mukaan Voimapuu-festivaalin lumottuun maailmaan torstaina 27.8. – sunnuntaina 30.8.2026. Tämä festivaali on kuin kotoinen syli, jossa maadoitumme yhdessä äiti Maan sylissä. Täällä Heinolan vihreissä metsissä, järvien kimalluksessa ja kuikan laulussa annamme luonnon energian virrata ja sydämemme sykkiä samassa tahdissa.</p>
-                    <h2>Elä luonnon tahdissa</h2>
-                    <p>Tanssimme, laulamme ja nautimme metsän rauhasta Heinolan lumouksessa. Täällä luonnon kauneus on läsnä jokaisessa hetkessä, ja voimme tuntea sen sykkeen maaperässä ja kuulla sen laulun puiden lehdissä. "Leave no trace" -periaate on sydämissämme: huolehdimme, että jätämme vain kevyet askeleemme ja paljon rakkautta luonnon ympärillemme.</p>
-                    <h2>Yhteisöllisyys ja yhdessä tekeminen</h2>
-                    <p>Voimapuu-festivaali on kuin yhteisöllinen kudelma, jonka jokainen lanka on osa suurta, elävää taideteosta. Tämä on paikka, jossa jokainen meistä voi olla oma itsensä – elää, nauraa, ja tanssia vapaana ja onnellisena. Festivaali toimii periaatteella "Sitä saa mitä tekee", ja se on elävä todiste siitä, kuinka jokainen meistä voi luoda yhteisen kokemuksen voimaa ja yhteisöllisyyttä.</p>
-                    <h2>Tukea ja turvaa kaikille</h2>
-                    <p>Luomme yhdessä tilan, jossa jokainen sielu voi kukoistaa vapaasti. Turvallinen tila on meille tärkeä, joten kunnioitamme toistemme rajoja ja tuemme toisiamme. Olemme kaikki osa yhtä suurta luontoa, ja jokainen meistä on arvokas.</p>
-                </div>
+                <div class="info-grid">
+                    <div class="info-intro info-anchor" id="intro">
+                        <div class="intro-quote">
+                            <p class="intro-quote-text">Sitä saa<br>mitä tekee</p>
+                        </div>
+                        <div class="intro-text">
+                            <p>Rakkaat metsän ystävät, sielun tanssijat ja luonnon lapset, kutsumme teidät jälleen mukaan Voimapuu-festivaalin lumottuun maailmaan torstaina 27.8. – sunnuntaina 30.8.2026. Tämä festivaali on kuin kotoinen syli, jossa maadoitumme yhdessä äiti Maan sylissä. Täällä Heinolan vihreissä metsissä, järvien kimalluksessa ja kuikan laulussa annamme luonnon energian virrata ja sydämemme sykkiä samassa tahdissa.</p>
+                            <p>Tanssimme, laulamme ja nautimme metsän rauhasta Heinolan lumouksessa. Täällä luonnon kauneus on läsnä jokaisessa hetkessä, ja voimme tuntea sen sykkeen maaperässä ja kuulla sen laulun puiden lehdissä. "Jälkiä jättämättä" -periaate on sydämissämme: huolehdimme, että jätämme vain kevyet askeleemme ja paljon rakkautta luontoon ympärillemme.</p>
+                            <p>Voimapuu-festivaali on kuin yhteisöllinen kudelma, jonka jokainen lanka on osa suurta, elävää taideteosta. Tämä on paikka, jossa jokainen meistä voi olla oma itsensä – elää, nauraa, ja tanssia vapaana ja onnellisena. Festivaali toimii periaatteella "Sitä saa mitä tekee", ja se on elävä todiste siitä, kuinka jokainen meistä voi luoda yhteisen kokemuksen voimaa ja yhteisöllisyyttä.</p>
+                            <p>Luomme yhdessä tilan, jossa jokainen sielu voi kukoistaa vapaasti. Turvallinen tila on meille tärkeä, joten kunnioitamme toistemme rajoja ja tuemme toisiamme. Olemme kaikki osa yhtä suurta luontoa, ja jokainen meistä on arvokas.</p>
+                        </div>
+                    </div>
 
-                <div id="saapuminen" class="info-anchor">
-                    <h2>Saapuminen ja pysäköinti</h2>
-                    <p>Festivaalit järjestetään Heinolan ja Kouvolan välissä. Tarkemmat koordinaatit ja saapumisohjeet jaetaan lähempänä tapahtumaa.</p>
-                    <p>Suosittelemme järjestämään yhteiskyytejä parkkialueen tilan ja ympäristön säästämiseksi.</p>
-                    <p>Pysäköintialueet on merkitty alueelle, mutta varmista kuitenkin että autosi ei tuki tietä.</p>
-                    <h2>Yöpyminen</h2>
-                    <p>Yöpyminen on perinteistä festariyöpymistä, eli teltta, riippumatto tai auto (tai vastaava). Jos yövyt autossa pyrimme parhaamme mukaan järkätä parkkipaikka suht lähelle.</p>
-                    <p>Valmiiksi scoutatut telttapaikat ovat merkattu <a href="#kartta">karttaan</a>, mutta teltan saa pystyttää minne vain. Muistakaa maalaisjärki ja leave no trace.</p>
-                </div>
+                    <div id="saapuminen" class="info-anchor info-card info-card--purple">
+                        <h2>Saapuminen</h2>
+                        <p>Festivaalit järjestetään Heinolan ja Kouvolan välissä. Tarkemmat koordinaatit ja saapumisohjeet jaetaan lähempänä tapahtumaa.</p>
+                        <p>Suosittelemme järjestämään yhteiskyytejä parkkialueen tilan ja ympäristön säästämiseksi.</p>
+                        <h2>Yöpyminen</h2>
+                        <p>Teltta, riippumatto tai auto. Leirintäalueet ja telttapaikat on merkattu karttaan, mutta teltan saa pystyttää minne vain. Muistakaa maalaisjärki ja jälkiä jättämättä.</p>
+                    </div>
 
-                <div id="ruoka" class="info-anchor">
-                    <h2>Ruoka</h2>
-                    <p>Festivaaleilla ei järjestetä yhteisruokailua, mutta aikataulusta löytyy milloin ruokakoju on auki josta voi ostaa kasvisruokaa niin kauan kuin sitä riittää.</p>
-                    <p>Ruuanlaittoon tarjoamme seuraavankaltaisia mahdollisuuksia:</p>
-                    <ul>
-                        <li>Avotulipaikka jossa voi grillata (metsäpalovarauksella)</li>
-                        <li>Kaasuliesi</li>
-                        <li>Iso muurikkapannu</li>
-                        <li>Vedenkeitin</li>
-                        <li>Perus kattilaa ja pannua</li>
-                    </ul>
-                    <p>Tuothan siis mukanasi omat astiat, ruuanlaittovälineet jos tarvitset muita kuin yllämainittuja ja ruokatarpeita jotka eivät vaadi kylmäsäilytystä.</p>
-                    <h2>Tiski</h2>
-                    <p>Alueella on tiskauspiste josta löytyy tiskiainetta, harjoja ja lämmintä vettä.</p>
-                </div>
+                    <div id="ruoka" class="info-anchor info-card info-card--orange">
+                        <h2>Ruoka</h2>
+                        <p>Ruokakoju on auki kerran päivässä aikataulun mukaan.</p>
+                        <p>Ruuanlaittomahdollisuudet:</p>
+                        <ul>
+                            <li>Avotulipaikka jossa voi grillata (metsäpalovarauksella)</li>
+                            <li>Kaasuliesi</li>
+                            <li>Iso muurikkapannu</li>
+                            <li>Vedenkeitin</li>
+                        </ul>
+                        <h2>Tiski</h2>
+                        <p>Alueella on tiskauspiste josta löytyy tiskiainetta, harjoja ja lämmintä vettä.</p>
+                    </div>
 
-                <div id="hygienia" class="info-anchor">
-                    <h2>Hygienia</h2>
-                    <p>Järven rannalle tulee telttasauna ja kylmä järvivesisuihku, käytäthän biohajoavia pesuaineita!</p>
-                    <h2>Käymälä</h2>
-                    <p>Alueelle tulee kaksi bajamajaa ja stagella on biokäymälä.</p>
-                    <h2>Hirvikärpäset</h2>
-                    <p>Jonkun verran saattaa olla hirvikärpäsiä, joten jos on herkkä näille ötököille kannattaa valmistautua niiden läsnäoloon.</p>
-                </div>
+                    <div id="hygienia" class="info-anchor info-card info-card--cyan">
+                        <h2>Hygienia</h2>
+                        <p>Järven rannalle tulee telttasauna ja kylmä järvivesisuihku, käytäthän biohajoavia pesuaineita!</p>
+                        <h2>Käymälä</h2>
+                        <p>Alueelle tulee kaksi bajamajaa ja stagella on biokäymälä.</p>
+                        <h2>Hirvikärpäset</h2>
+                        <p>Jonkun verran saattaa olla hirvikärpäsiä — valmistaudu jos olet herkkä niille.</p>
+                    </div>
 
-                <div id="ilmoitustaulu" class="info-anchor">
-                    <h2>Ilmoitustaulu</h2>
-                    <p>Alueella on ilmoitustaulu johon voi paikan päällä ilmoittaa erinäisistä ohjelmanumeroista, kuten spontaaneista sienireissuista.</p>
-                </div>
-
-                <div id="kartta" class="info-anchor">
-                    <h2>Kartta</h2>
-                    <p>Kartta julkaistaan lähempänä tapahtumaa.</p>
+                    <div id="ilmoitustaulu" class="info-anchor info-card info-card--purple">
+                        <h2>Tiedotus</h2>
+                        <p>Alueella on ilmoitustaulu johon voi ilmoittaa spontaaneista ohjelmanumeroista kuten sienireissuista.</p>
+                        <h2>Kartta</h2>
+                        <p>Kartta julkaistaan lähempänä tapahtumaa.</p>
+                    </div>
                 </div>
             </div>
         </section>
         <section id="section-ohjelma" class="page-section">
             <nav class="sub-nav" id="ohjelma-subnav">
-                <a href="#torstai">To 27.8.</a>
-                <a href="#perjantai">Pe 28.8.</a>
-                <a href="#lauantai">La 29.8.</a>
-                <a href="#sunnuntai">Su 30.8.</a>
+                <a href="#torstai">Torstai</a>
+                <a href="#perjantai">Perjantai</a>
+                <a href="#lauantai">Lauantai</a>
+                <a href="#sunnuntai">Sunnuntai</a>
             </nav>
-            <div class="section-inner">
-                <div id="torstai" class="ohjelma-anchor">
-                    <h2>Torstai 27.8.</h2>
-                    <table class="schedule-table">
-                        <thead><tr><th>Aika</th><th>Ohjelma</th><th>Paikka</th></tr></thead>
-                        <tbody>
-                            <tr><td>20:00</td><td>Avajaiseremonia</td><td>Päälava</td></tr>
-                            <tr><td>~21:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                            <tr><td>23:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="perjantai" class="ohjelma-anchor">
-                    <h2>Perjantai 28.8.</h2>
-                    <table class="schedule-table">
-                        <thead><tr><th>Aika</th><th>Ohjelma</th><th>Paikka</th></tr></thead>
-                        <tbody>
-                            <tr><td>Päivällä</td><td><span class="note">Open decks</span></td><td>Rantalava</td></tr>
-                            <tr><td>17:00</td><td><span class="act">TBA</span></td><td>Rantalava</td></tr>
-                            <tr><td>19:00</td><td>Tarina</td><td>Tulipaikka</td></tr>
-                            <tr><td>20:00</td><td><span class="note">Rantalava hiljenee</span></td><td></td></tr>
-                            <tr><td>21:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                            <tr><td>23:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                            <tr><td>01:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                            <tr><td>03:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="lauantai" class="ohjelma-anchor">
-                    <h2>Lauantai 29.8.</h2>
-                    <table class="schedule-table">
-                        <thead><tr><th>Aika</th><th>Ohjelma</th><th>Paikka</th></tr></thead>
-                        <tbody>
-                            <tr><td>Päivällä</td><td><span class="note">Open decks</span></td><td>Rantalava</td></tr>
-                            <tr><td>16:00</td><td>Jooga</td><td>Rantalava</td></tr>
-                            <tr><td>18:00</td><td><span class="act">TBA</span></td><td>Rantalava</td></tr>
-                            <tr><td>20:00</td><td><span class="note">Rantalava hiljenee</span></td><td></td></tr>
-                            <tr><td>22:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                            <tr><td>00:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                            <tr><td>02:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                            <tr><td>04:00</td><td><span class="act">TBA</span></td><td>Päälava</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="sunnuntai" class="ohjelma-anchor">
-                    <h2>Sunnuntai 30.8.</h2>
-                    <table class="schedule-table">
-                        <thead><tr><th>Aika</th><th>Ohjelma</th><th>Paikka</th></tr></thead>
-                        <tbody>
-                            <tr><td>Päivällä</td><td><span class="note">Open decks</span></td><td>Rantalava</td></tr>
-                            <tr><td>14:00</td><td>Jäähyväiset</td><td>Rantalava</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="ohjelma-split">
+            <div class="ohjelma-schedule">
+            <div class="section-inner" id="ohjelma-content"></div>
+            </div>
+            <div class="ohjelma-image" aria-hidden="true">
+                <img src="mainstage.webp" alt="">
+            </div>
             </div>
         </section>
         <section id="section-artistit" class="page-section">
             <div class="section-inner">
-                <p>Artistit tulossa.</p>
+                <div class="section-label label--cyan">ARTISTIT</div>
+                <hr class="section-rule rule--cyan">
+                <p class="artistit-intro">Lineup julkaistaan lähempänä tapahtumaa.</p>
+                <div class="artist-grid" id="artist-grid"></div>
             </div>
         </section>
         <section id="section-artist" class="page-section">
@@ -747,6 +875,8 @@
                 return { section: 'landing' };
             }
 
+            const footer = document.querySelector('.led-footer');
+
             function render({ section, slug }) {
                 const isLanding = section === 'landing';
 
@@ -754,11 +884,7 @@
                 if (window._p5) isLanding ? window._p5.loop() : window._p5.noLoop();
 
                 landing.classList.toggle('hidden', !isLanding);
-
-                document.querySelectorAll('.bg-layer').forEach(l => l.classList.remove('active'));
-                if (!isLanding) {
-                    document.getElementById(`bg-${section === 'artist' ? 'artist' : section}`)?.classList.add('active');
-                }
+                if (footer) footer.classList.toggle('hidden', !isLanding);
 
                 document.querySelectorAll('.page-section').forEach(s => s.classList.remove('visible'));
                 if (!isLanding) {
@@ -789,82 +915,191 @@
 
             window.addEventListener('popstate', () => render(getRoute(window.location.pathname)));
 
-            function renderArtist(slug) {
-                document.getElementById('artist-detail').innerHTML = '<p>Ladataan...</p>';
+            const GRADIENTS = [
+                'linear-gradient(155deg, rgba(158,46,154,0.35) 0%, rgba(17,207,232,0.25) 100%)',
+                'linear-gradient(155deg, rgba(242,116,13,0.35) 0%, rgba(158,46,154,0.28) 100%)',
+                'linear-gradient(155deg, rgba(17,207,232,0.3) 0%, rgba(242,116,13,0.25) 100%)',
+                'linear-gradient(155deg, rgba(158,46,154,0.28) 0%, rgba(242,116,13,0.32) 100%)',
+                'linear-gradient(155deg, rgba(17,207,232,0.25) 0%, rgba(158,46,154,0.35) 100%)',
+                'linear-gradient(155deg, rgba(242,116,13,0.28) 0%, rgba(17,207,232,0.3) 100%)',
+            ];
+
+            let artistsCache = null;
+
+            async function loadArtists() {
+                if (artistsCache) return artistsCache;
+                try {
+                    const res = await fetch(`${BASE}/artists.json`);
+                    artistsCache = await res.json();
+                } catch (e) {
+                    artistsCache = [];
+                }
+                return artistsCache;
+            }
+
+            async function renderArtistGrid() {
+                const artists = await loadArtists();
+                const grid = document.getElementById('artist-grid');
+                if (!grid) return;
+                grid.innerHTML = artists.map((a, i) => {
+                    const bgStyle = a.image
+                        ? `background: url('${BASE}/${a.image}') center/cover no-repeat`
+                        : `background: ${GRADIENTS[i % GRADIENTS.length]}`;
+                    const slot = [a.slot, a.venue].filter(Boolean).join(' · ');
+                    return `<div class="artist-card" data-slug="${a.slug}" style="cursor:pointer">
+                        <div class="artist-bg" style="${bgStyle}"></div>
+                        <div class="artist-meta">
+                            <span class="artist-slot">${slot}</span>
+                            <div class="artist-name">${a.name}</div>
+                        </div>
+                    </div>`;
+                }).join('');
+                grid.querySelectorAll('.artist-card').forEach(card => {
+                    card.addEventListener('click', () => navigate(`${BASE}/artistit/${card.dataset.slug}`));
+                });
+            }
+
+            async function renderArtist(slug) {
+                const artists = await loadArtists();
+                const a = artists.find(x => x.slug === slug);
+                const detail = document.getElementById('artist-detail');
+                if (!a) { detail.innerHTML = '<p>Artistia ei löydy.</p>'; return; }
+                const bgStyle = a.image
+                    ? `background: url('${BASE}/${a.image}') center/cover no-repeat`
+                    : `background: ${GRADIENTS[artists.indexOf(a) % GRADIENTS.length]}`;
+                const slot = [a.slot, a.venue].filter(Boolean).join(' · ');
+                detail.innerHTML = `<div class="artist-detail-hero" style="${bgStyle}; height:40vh; border-radius:8px; margin-bottom:2rem;"></div>
+                    <p style="font-family:'Doto',sans-serif;font-variation-settings:'ROND' 100;font-weight:900;font-size:11px;letter-spacing:0.1em;color:rgb(242,116,13);margin:0 0 0.5rem">${slot}</p>
+                    <h2 style="font-family:'Doto',sans-serif;font-variation-settings:'ROND' 100;font-weight:900;font-size:clamp(24px,4vw,40px);margin:0 0 1rem;color:#111">${a.name}</h2>
+                    ${a.bio ? `<p style="font-family:system-ui,sans-serif;font-size:clamp(14px,1.8vw,17px);line-height:1.7;color:#444;max-width:640px">${a.bio}</p>` : ''}`;
+            }
+
+            async function initFooterMarquee() {
+                const inner = document.querySelector('.footer-inner');
+                if (!inner) return;
+                const [artists] = await Promise.all([loadArtists(), document.fonts.ready]);
+                const names = artists.filter(a => a.name !== 'TBA').map(a => a.name);
+                if (!names.length) return;
+
+                const dp = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dp'));
+                const STEP = 50;
+
+                // Use non-breaking spaces so trailing whitespace isn't stripped
+                // from offsetWidth — regular spaces at the end of a text node are ignored
+                const SEP = ' · ';
+                const label = names.join(SEP) + SEP;
+
+                // Measure one copy
+                const probe = document.createElement('span');
+                probe.className = 'footer-text';
+                probe.textContent = label;
+                probe.style.transform = 'translateY(-50%)';
+                probe.style.visibility = 'hidden';
+                inner.appendChild(probe);
+                const stride = probe.offsetWidth;
+                inner.removeChild(probe);
+
+                // Enough copies to always fill the footer
+                const n = Math.ceil(inner.clientWidth / stride) + 2;
+                const copies = Array.from({ length: n }, (_, i) => {
+                    const s = document.createElement('span');
+                    s.className = 'footer-text';
+                    s.textContent = label;
+                    if (i > 0) s.setAttribute('aria-hidden', 'true');
+                    s.style.transform = `translateX(${i * stride}px) translateY(-50%)`;
+                    inner.appendChild(s);
+                    return s;
+                });
+
+                let offset = 0, last = 0;
+                function tick(t) {
+                    if (t - last >= STEP) {
+                        offset -= dp;
+                        if (offset < -stride) offset += stride;
+                        copies.forEach((s, i) => {
+                            s.style.transform = `translateX(${offset + i * stride}px) translateY(-50%)`;
+                        });
+                        last = t;
+                    }
+                    requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            }
+
+            const OHJELMA_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTHhUhQqVy8nSI_6odNTmAmb3LSCKB02pgt5K--N6souyAifLzSHwsHlkY6u66qnJ4IDtzx30MeG2C5/pub?gid=1927498102&single=true&output=csv';
+            const DAYS = ['Torstai', 'Perjantai', 'Lauantai', 'Sunnuntai'];
+
+            function parseCsvRow(line) {
+                const out = []; let cur = '', q = false;
+                for (const c of line) {
+                    if (c === '"') q = !q;
+                    else if (c === ',' && !q) { out.push(cur); cur = ''; }
+                    else cur += c;
+                }
+                out.push(cur);
+                return out;
+            }
+
+            async function loadOhjelma() {
+                try {
+                    const res = await fetch(OHJELMA_URL);
+                    const text = await res.text();
+                    const rows = text.trim().split('\n').map(parseCsvRow);
+                    const venues = rows[0].slice(1).map(v => v.trim());
+                    const byDay = {};
+                    let day = null;
+                    for (let i = 1; i < rows.length; i++) {
+                        const row = rows[i];
+                        const first = row[0].trim();
+                        if (DAYS.includes(first)) { day = first; byDay[day] = []; continue; }
+                        if (!day || !/^\d{1,2}:\d{2}$/.test(first)) continue;
+                        const events = [];
+                        for (let j = 1; j < row.length; j++) {
+                            const name = row[j].trim();
+                            if (name) events.push({ name, venue: venues[j - 1] });
+                        }
+                        if (events.length) byDay[day].push({ time: first, events });
+                    }
+                    return byDay;
+                } catch (e) { return {}; }
+            }
+
+            async function renderOhjelma() {
+                const container = document.getElementById('ohjelma-content');
+                if (!container) return;
+                const byDay = await loadOhjelma();
+                container.innerHTML = DAYS.map(day => {
+                    const slots = byDay[day] || [];
+                    const rowsHtml = slots.flatMap(({ time, events }) =>
+                        events.map(({ name, venue }) =>
+                            `<tr><td>${time}</td><td><span class="act">${name}</span></td><td>${venue}</td></tr>`)
+                    ).join('');
+                    return `<div id="${day.toLowerCase()}" class="ohjelma-anchor">
+                        <div class="day-label">${day}</div>
+                        ${rowsHtml
+                            ? `<table class="schedule-table"><thead><tr><th>Aika</th><th>Ohjelma</th><th>Paikka</th></tr></thead><tbody>${rowsHtml}</tbody></table>`
+                            : `<p class="note" style="margin:0">Ohjelma tulossa.</p>`}
+                    </div>`;
+                }).join('');
             }
 
             render(getRoute(window.location.pathname));
+            renderArtistGrid();
+            renderOhjelma();
+            initFooterMarquee();
             window.vpNavigate = navigate;
         })();
     </script>
     <script>
         (function () {
-            const infoSection = document.getElementById('section-info');
-            const subnav = document.getElementById('info-subnav');
-            if (!infoSection || !subnav) return;
-
-            const links = Array.from(subnav.querySelectorAll('a'));
-            const anchors = Array.from(infoSection.querySelectorAll('.info-anchor'));
-            let suppressUpdate = false;
-            let suppressTimer;
-
-            function setActive(id) {
-                links.forEach(l => l.classList.remove('active'));
-                const active = subnav.querySelector(`a[href="#${id}"]`);
-                if (active) {
-                    active.classList.add('active');
-                    active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }
-            }
-
-            links.forEach(link => {
-                link.addEventListener('click', e => {
-                    e.preventDefault();
-                    const id = link.getAttribute('href').slice(1);
-                    const target = infoSection.querySelector('#' + id);
-                    if (target) {
-                        const targetScrollTop = target.getBoundingClientRect().top
-                            - infoSection.getBoundingClientRect().top
-                            + infoSection.scrollTop
-                            - subnav.offsetHeight;
-                        suppressUpdate = true;
-                        clearTimeout(suppressTimer);
-                        infoSection.scrollTo({ top: Math.max(0, targetScrollTop), behavior: 'smooth' });
-                        suppressTimer = setTimeout(() => {
-                            suppressUpdate = false;
-                            updateActive();
-                        }, 600);
-                    }
-                    setActive(id);
-                    history.replaceState(null, '', '/2026/info#' + id);
-                });
-            });
-
-            function updateActive() {
-                if (suppressUpdate) return;
-                const containerRect = infoSection.getBoundingClientRect();
-                const visibleTop = containerRect.top + subnav.offsetHeight + 4;
-                for (const el of anchors) {
-                    if (el.getBoundingClientRect().bottom > visibleTop) {
-                        setActive(el.id);
-                        return;
-                    }
-                }
-                setActive(anchors[anchors.length - 1].id);
-            }
-
-            infoSection.addEventListener('scroll', updateActive, { passive: true });
-            setActive('intro');
-        })();
-    </script>
-    <script>
-        (function () {
             const section = document.getElementById('section-ohjelma');
+            const scroller = section.querySelector('.ohjelma-schedule') || section;
             const subnav = document.getElementById('ohjelma-subnav');
             if (!section || !subnav) return;
 
             const links = Array.from(subnav.querySelectorAll('a'));
-            const anchors = Array.from(section.querySelectorAll('.ohjelma-anchor'));
+            // Fetched lazily — content is rendered async from the spreadsheet
+            const anchors = () => Array.from(section.querySelectorAll('.ohjelma-anchor'));
             let suppressUpdate = false;
             let suppressTimer;
 
@@ -884,12 +1119,12 @@
                     const target = section.querySelector('#' + id);
                     if (target) {
                         const targetScrollTop = target.getBoundingClientRect().top
-                            - section.getBoundingClientRect().top
-                            + section.scrollTop
+                            - scroller.getBoundingClientRect().top
+                            + scroller.scrollTop
                             - subnav.offsetHeight;
                         suppressUpdate = true;
                         clearTimeout(suppressTimer);
-                        section.scrollTo({ top: Math.max(0, targetScrollTop), behavior: 'smooth' });
+                        scroller.scrollTo({ top: Math.max(0, targetScrollTop), behavior: 'smooth' });
                         suppressTimer = setTimeout(() => {
                             suppressUpdate = false;
                             updateActive();
@@ -902,18 +1137,20 @@
 
             function updateActive() {
                 if (suppressUpdate) return;
-                const containerRect = section.getBoundingClientRect();
+                const els = anchors();
+                if (!els.length) return;
+                const containerRect = scroller.getBoundingClientRect();
                 const visibleTop = containerRect.top + subnav.offsetHeight + 4;
-                for (const el of anchors) {
+                for (const el of els) {
                     if (el.getBoundingClientRect().bottom > visibleTop) {
                         setActive(el.id);
                         return;
                     }
                 }
-                setActive(anchors[anchors.length - 1].id);
+                setActive(els[els.length - 1].id);
             }
 
-            section.addEventListener('scroll', updateActive, { passive: true });
+            scroller.addEventListener('scroll', updateActive, { passive: true });
             setActive('torstai');
         })();
     </script>

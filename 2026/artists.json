@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Likainen Alapää",
+    "slug": "likainen-alapaa",
+    "slot": "TBA",
+    "venue": "TBA",
+    "image": "../2024/jere.jpeg"
+  },
+  {
+    "name": "House Goblin",
+    "slug": "house-goblin",
+    "slot": "TBA",
+    "venue": "TBA",
+    "image": "../2024/house_goblin.jpeg"
+  },
+  {
+    "name": "Østhøvel",
+    "slug": "osthovel",
+    "slot": "TBA",
+    "venue": "TBA",
+    "image": "../2024/osthovel.jpeg"
+  },
+  {
+    "name": "Rupikonna",
+    "slug": "rupikonna",
+    "slot": "TBA",
+    "venue": "TBA",
+    "image": "../2024/rupikonna.jpeg"
+  },
+  {
+    "name": "Pace",
+    "slug": "pace",
+    "slot": "TBA",
+    "venue": "TBA",
+    "image": "../2024/pace.jpeg"
+  }
+]

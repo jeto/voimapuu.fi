@@ -333,6 +333,7 @@
         }
         @media (max-width: 900px) {
             .artist-split { grid-template-columns: 1fr; height: auto; }
+            .artist-photo { aspect-ratio: 4/3; }
         }
         .artist-photo {
             position: relative;
@@ -647,6 +648,11 @@
         }
         .schedule-table tr:last-child td { border-bottom: none; }
         .schedule-table .act  { font-weight: 600; color: #fff; }
+        .schedule-table .act-link {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: rgba(255,255,255,0.35);
+        }
         .schedule-table .note { font-style: italic; color: rgba(255,255,255,0.35); }
 
         /* ── SECTION LABELS (shared) ── */
@@ -708,8 +714,26 @@
             min-height: 0;
             position: relative;
             overflow: hidden;
+            isolation: isolate;
         }
         .artist-bg { position: absolute; inset: 0; }
+        .artist-thumb::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-color: var(--hover-color, rgb(158,46,154));
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+            background-size: 240px 240px;
+            background-blend-mode: multiply;
+            mix-blend-mode: exclusion;
+            clip-path: inset(0 0 100% 0);
+            transition: clip-path 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .artist-card:hover .artist-thumb::before {
+            clip-path: inset(0 0 0 0);
+        }
         .artist-label {
             flex: 1;
             display: flex;
@@ -1263,7 +1287,8 @@
                 const container = document.getElementById('ohjelma-content');
                 const filtersEl = document.getElementById('ohjelma-filters');
                 if (!container) return;
-                const byDay = await loadOhjelma();
+                const [byDay, artists] = await Promise.all([loadOhjelma(), loadArtists()]);
+                const artistMap = new Map(artists.map(a => [a.name.toLowerCase(), a.slug]));
 
                 const VENUE_COLORS = {
                     'Päälava':   'rgb(242,116,13)',
@@ -1281,7 +1306,11 @@
                     const rowsHtml = slots.flatMap(({ time, events }) =>
                         events.map(({ name, venue }) => {
                             const c = VENUE_COLORS[venue] || 'rgba(255,255,255,0.28)';
-                            return `<tr data-venue="${venue}"><td>${time}</td><td><span class="act">${name}</span></td><td style="color:${c}">${venue}</td></tr>`;
+                            const slug = artistMap.get(name.toLowerCase());
+                            const nameHtml = slug
+                                ? `<span class="act act-link" data-slug="${slug}">${name}</span>`
+                                : `<span class="act">${name}</span>`;
+                            return `<tr data-venue="${venue}"><td>${time}</td><td>${nameHtml}</td><td style="color:${c}">${venue}</td></tr>`;
                         })
                     ).join('');
                     return `<div id="${day.toLowerCase()}" class="ohjelma-anchor">
@@ -1291,6 +1320,12 @@
                             : `<p style="font-family:'Doto',sans-serif;font-variation-settings:'ROND' 100;font-weight:900;font-size:13px;letter-spacing:0.06em;color:rgba(255,255,255,0.28);margin:0">Ohjelma tulossa</p>`}
                     </div>`;
                 }).join('');
+
+                // Wire up artist links
+                container.querySelectorAll('.act-link').forEach(el => {
+                    el.style.cursor = 'pointer';
+                    el.addEventListener('click', () => navigate(`${BASE}/artistit/${el.dataset.slug}`));
+                });
 
                 // Build filter pills from venues actually present in the data
                 if (filtersEl && allVenues.size > 0) {

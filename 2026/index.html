@@ -51,7 +51,6 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            overscroll-behavior: none;
         }
 
         html { background-color: #fff; }
@@ -257,14 +256,16 @@
             right: 0;
             bottom: 0;
             z-index: 1;
-            overflow-y: auto;
+            overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: contain;
+            scrollbar-width: none;
             opacity: 0;
             visibility: hidden;
             text-align: left;
             transition: none;
         }
+        .page-section::-webkit-scrollbar { display: none; }
         .page-section.visible {
             opacity: 1;
             visibility: visible;
@@ -340,6 +341,7 @@
         @media (max-width: 900px) {
             .artist-split { grid-template-columns: 1fr; height: auto; }
             .artist-photo { aspect-ratio: 4/3; }
+            #section-artist .section-inner { height: auto; }
         }
         .artist-photo {
             position: relative;
@@ -1113,7 +1115,11 @@
                 if (next) {
                     // New section sits on top during fade-in
                     next.style.zIndex = '3';
+                    next.scrollTop = 0;
                     next.classList.add('visible');
+                    if (document.activeElement && document.activeElement !== document.body) {
+                        document.activeElement.blur();
+                    }
                     zIndexTimer = setTimeout(() => { next.style.zIndex = ''; }, 600);
                     activeSec = next;
                 } else {

@@ -532,6 +532,41 @@
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
+        .ohjelma-filters {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            padding: 0.6rem clamp(20px, 5vw, 72px);
+            background: rgba(16,11,21,0.96);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .filter-pill {
+            font-family: 'Doto', sans-serif;
+            font-variation-settings: "ROND" 100;
+            font-weight: 900;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid var(--pill-color, rgba(255,255,255,0.4));
+            color: var(--pill-color, rgba(255,255,255,0.4));
+            background: transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            opacity: 0.7;
+            transition: opacity 0.15s;
+        }
+        .filter-pill:hover { opacity: 0.9; }
+        .filter-pill.active {
+            opacity: 1;
+            border-width: 2px;
+            padding: calc(0.3rem - 1px) calc(0.75rem - 1px);
+        }
         .ohjelma-image {
             height: 100%;
             overflow: hidden;
@@ -600,7 +635,7 @@
             line-height: 1.35;
         }
         .schedule-table td:first-child {
-            color: rgba(255,255,255,0.28);
+            color: rgba(255,255,255,0.55);
             width: 5.5rem;
             font-variant-numeric: tabular-nums;
             white-space: nowrap;
@@ -954,6 +989,7 @@
             </nav>
             <div class="ohjelma-split">
             <div class="ohjelma-schedule">
+            <div class="ohjelma-filters" id="ohjelma-filters"></div>
             <div class="section-inner" id="ohjelma-content"></div>
             </div>
             <div class="ohjelma-image" aria-hidden="true">
@@ -1225,21 +1261,69 @@
 
             async function renderOhjelma() {
                 const container = document.getElementById('ohjelma-content');
+                const filtersEl = document.getElementById('ohjelma-filters');
                 if (!container) return;
                 const byDay = await loadOhjelma();
+
+                const VENUE_COLORS = {
+                    'Päälava':   'rgb(242,116,13)',
+                    'Laavulava': 'rgb(158,46,154)',
+                    'Työpaja':   'rgb(17,207,232)',
+                    'Cafe Disco':'rgb(220,80,180)',
+                    'Ruoka':     'rgb(120,200,100)',
+                };
+
+                const allVenues = new Set();
+
                 container.innerHTML = DAYS.map(day => {
                     const slots = byDay[day] || [];
+                    slots.forEach(({ events }) => events.forEach(({ venue }) => allVenues.add(venue)));
                     const rowsHtml = slots.flatMap(({ time, events }) =>
-                        events.map(({ name, venue }) =>
-                            `<tr><td>${time}</td><td><span class="act">${name}</span></td><td>${venue}</td></tr>`)
+                        events.map(({ name, venue }) => {
+                            const c = VENUE_COLORS[venue] || 'rgba(255,255,255,0.28)';
+                            return `<tr data-venue="${venue}"><td>${time}</td><td><span class="act">${name}</span></td><td style="color:${c}">${venue}</td></tr>`;
+                        })
                     ).join('');
                     return `<div id="${day.toLowerCase()}" class="ohjelma-anchor">
                         <div class="day-label">${day}</div>
                         ${rowsHtml
                             ? `<table class="schedule-table"><thead><tr><th>Aika</th><th>Ohjelma</th><th>Paikka</th></tr></thead><tbody>${rowsHtml}</tbody></table>`
-                            : `<p class="note" style="margin:0">Ohjelma tulossa.</p>`}
+                            : `<p style="font-family:'Doto',sans-serif;font-variation-settings:'ROND' 100;font-weight:900;font-size:13px;letter-spacing:0.06em;color:rgba(255,255,255,0.28);margin:0">Ohjelma tulossa</p>`}
                     </div>`;
                 }).join('');
+
+                // Build filter pills from venues actually present in the data
+                if (filtersEl && allVenues.size > 0) {
+                    filtersEl.innerHTML = [
+                        `<button class="filter-pill active" data-venue="" style="--pill-color:#fff">Kaikki</button>`,
+                        ...[...allVenues].map(v => {
+                            const c = VENUE_COLORS[v] || 'rgba(255,255,255,0.5)';
+                            return `<button class="filter-pill" data-venue="${v}" style="--pill-color:${c}">${v}</button>`;
+                        })
+                    ].join('');
+
+                    function applyVenueFilter(venue) {
+                        filtersEl.querySelectorAll('.filter-pill').forEach(p =>
+                            p.classList.toggle('active', p.dataset.venue === venue));
+                        container.querySelectorAll('tr[data-venue]').forEach(row => {
+                            row.style.display = (!venue || row.dataset.venue === venue) ? '' : 'none';
+                        });
+                        const url = new URL(window.location);
+                        if (venue) url.searchParams.set('venue', venue);
+                        else url.searchParams.delete('venue');
+                        history.replaceState(null, '', url);
+                    }
+
+                    filtersEl.addEventListener('click', e => {
+                        const pill = e.target.closest('.filter-pill');
+                        if (!pill) return;
+                        applyVenueFilter(pill.dataset.venue);
+                    });
+
+                    // Apply filter from URL on load (shared links)
+                    const savedVenue = new URLSearchParams(window.location.search).get('venue');
+                    if (savedVenue) applyVenueFilter(savedVenue);
+                }
             }
 
             render(getRoute(window.location.pathname));
@@ -1290,7 +1374,7 @@
                         }, 600);
                     }
                     setActive(id);
-                    history.replaceState(null, '', '/2026/ohjelma#' + id);
+                    const _u = new URL(window.location); _u.hash = id; history.replaceState(null, '', _u);
                 });
             });
 

@@ -532,3 +532,7 @@ window._p5 = new p5((p) => {
     setActive('torstai');
 })();
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/2026/sw.js');
+}
+

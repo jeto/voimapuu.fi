@@ -51,6 +51,7 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            overscroll-behavior-y: none;
         }
 
         html { background-color: #fff; }
@@ -258,7 +259,6 @@
             z-index: 1;
             overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
             scrollbar-width: none;
             opacity: 0;
             visibility: hidden;
@@ -1115,7 +1115,6 @@
                 if (next) {
                     // New section sits on top during fade-in
                     next.style.zIndex = '3';
-                    next.scrollTop = 0;
                     next.classList.add('visible');
                     if (document.activeElement && document.activeElement !== document.body) {
                         document.activeElement.blur();
@@ -1131,7 +1130,9 @@
                     item.classList.toggle('active', match);
                 });
 
-                if (section === 'artist' && slug) renderArtist(slug);
+                if (section === 'artist' && slug) renderArtist(slug).then(() => {
+                    if (next) next.scrollTop = 0;
+                });
 
                 const hash = window.location.hash;
                 if (hash) requestAnimationFrame(() => {

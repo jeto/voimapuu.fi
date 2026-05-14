@@ -1180,8 +1180,9 @@
                 const grid = document.getElementById('artist-grid');
                 if (!grid) return;
                 grid.innerHTML = artists.map((a, i) => {
-                    const bgStyle = a.image
-                        ? `background: url('${BASE}/${a.image}') center/cover no-repeat`
+                    const thumbSrc = a.thumbnail || a.image;
+                    const bgStyle = thumbSrc
+                        ? `background: url('${BASE}/${thumbSrc}') center/cover no-repeat`
                         : `background: ${GRADIENTS[i % GRADIENTS.length]}`;
                     const hoverColor = PALETTE_COLORS[i % PALETTE_COLORS.length];
                     return `<div class="artist-card" data-slug="${a.slug}" style="--hover-color:${hoverColor}">
@@ -1213,7 +1214,7 @@
                         <div class="artist-content">
                             <button class="artist-back" onclick="history.back()">« Takaisin</button>
                             <h2 class="artist-content-name">${a.name}</h2>
-                            ${a.description ? a.description.split('\n\n').map(p => `<p class="artist-content-bio">${p}</p>`).join('') : ''}
+                            ${a.description ? a.description.split('\n\n').map(p => `<p class="artist-content-bio">${p.replace(/\n/g, '<br>')}</p>`).join('') : ''}
                             ${(Array.isArray(a.media) ? a.media : a.media ? [a.media] : []).map(src => `<iframe class="artist-media" src="${src}" scrolling="no" allow="autoplay"></iframe>`).join('')}
                         </div>
                     </div>`;

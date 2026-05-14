@@ -1214,7 +1214,7 @@
                             <button class="artist-back" onclick="history.back()">« Takaisin</button>
                             <h2 class="artist-content-name">${a.name}</h2>
                             ${a.description ? a.description.split('\n\n').map(p => `<p class="artist-content-bio">${p}</p>`).join('') : ''}
-                            ${a.media ? `<iframe class="artist-media" src="${a.media}" scrolling="no" allow="autoplay"></iframe>` : ''}
+                            ${(Array.isArray(a.media) ? a.media : a.media ? [a.media] : []).map(src => `<iframe class="artist-media" src="${src}" scrolling="no" allow="autoplay"></iframe>`).join('')}
                         </div>
                     </div>`;
             }

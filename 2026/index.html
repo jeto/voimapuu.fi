@@ -261,12 +261,12 @@
             opacity: 0;
             visibility: hidden;
             text-align: left;
-            transition: opacity 0.4s ease, visibility 0s 0.4s;
+            transition: none;
         }
         .page-section.visible {
             opacity: 1;
             visibility: visible;
-            transition: opacity 0.4s ease 0.15s, visibility 0s;
+            transition: none;
         }
         .section-inner {
             padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 72px);
@@ -1085,7 +1085,7 @@
             const footer = document.querySelector('.led-footer');
             const backBtn = document.querySelector('.led-back');
             let activeSec = null;
-            let cleanupTimer = null;
+            let zIndexTimer = null;
 
             function render({ section, slug }) {
                 const isLanding = section === 'landing';
@@ -1097,32 +1097,25 @@
                 if (footer) footer.classList.toggle('hidden', !isLanding);
                 if (backBtn) backBtn.classList.toggle('hidden', isLanding);
 
-                if (cleanupTimer) clearTimeout(cleanupTimer);
+                const next = isLanding ? null : document.getElementById(`section-${section}`);
 
-                if (!isLanding) {
-                    const next = document.getElementById(`section-${section}`);
-                    if (next) {
-                        // New section fades in on top — old stays visible so no white flash
-                        next.style.zIndex = '3';
-                        next.classList.add('visible');
-                        const prev = activeSec;
-                        cleanupTimer = setTimeout(() => {
-                            if (prev && prev !== next) {
-                                prev.style.zIndex = '0'; // sink below incoming section
-                                prev.classList.remove('visible');
-                                setTimeout(() => { prev.style.zIndex = ''; }, 450);
-                            }
-                            next.style.zIndex = '';
-                        }, 600);
-                        activeSec = next;
+                // Sweep every section so no stale `.visible` lingers between rapid clicks
+                document.querySelectorAll('.page-section').forEach(el => {
+                    if (el !== next) {
+                        el.classList.remove('visible');
+                        el.style.zIndex = '';
                     }
+                });
+
+                if (zIndexTimer) clearTimeout(zIndexTimer);
+                if (next) {
+                    // New section sits on top during fade-in
+                    next.style.zIndex = '3';
+                    next.classList.add('visible');
+                    zIndexTimer = setTimeout(() => { next.style.zIndex = ''; }, 600);
+                    activeSec = next;
                 } else {
-                    // Back to landing — fade out current section normally
-                    if (activeSec) {
-                        activeSec.classList.remove('visible');
-                        activeSec.style.zIndex = '';
-                        activeSec = null;
-                    }
+                    activeSec = null;
                 }
 
                 document.querySelectorAll('.led-item').forEach((item, i) => {

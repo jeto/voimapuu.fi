@@ -211,6 +211,7 @@ window._p5 = new p5((p) => {
         if (section === 'artist' && slug) renderArtist(slug).then(() => {
             if (next) next.scrollTop = 0;
         });
+        if (section === 'ohjelma') renderOhjelma();
 
         const hash = window.location.hash;
         if (hash) requestAnimationFrame(() => {

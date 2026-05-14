@@ -2,43 +2,43 @@
   {
     "name": "Likainen Alapää",
     "slug": "likainen-alapaa",
-    "slot": "TBA",
-    "venue": "TBA",
-    "image": "likainenalapaa.jpg"
+    "image": "likainenalapaa.jpg",
+    "description": "Likaiselle Alapäälle basso ei ole vain taajuus; se on jotain maanläheistä ja primitiivistä. Basso jyrisee kuin hämärä, raaka energia, joka kietoo kuuntelijan kuin kehon oma hikinen tuoksu, täynnä syvää ja raskasta elämää. Likainen Alapää tuo esiin seteissään jotain rohkean häiritsevää ja samalla hypnoottisen vetoavaa. Se on bassoa, joka ei vain tunnu, vaan jättää jäljen kuin haju, jota et voi paeta. Se on kokemuksena yhtä aikaa karkottava ja koukuttava, raaka ja rehellinen muistuttaen kaikista niistä synneistä, jotka on jätetty pesemättä.",
+    "media": ""
   },
   {
     "name": "House Goblin",
     "slug": "house-goblin",
-    "slot": "TBA",
-    "venue": "TBA",
-    "image": "housegoblin.jpg"
+    "image": "housegoblin.jpg",
+    "description": "",
+    "media": ""
   },
   {
     "name": "Østhøvel",
     "slug": "osthovel",
-    "slot": "TBA",
-    "venue": "TBA",
-    "image": "osthovel.jpg"
+    "image": "osthovel.jpg",
+    "description": "Østhøvel löysi tiensä elektronisen musiikin maailmaan tanssin ja kehon liikkeen kautta, missä äänen ja liikkeen välinen yhteys osoittautui erottamattomaksi. Hänen matkansa eri genrejen läpi on saanut inspiraationsa siitä, mitä hän kutsuu \"juustotasapainoksi\" - hienovaraiseksi, rajoja rikkovaksi kokemukseksi, joka osuessaan kohdalleen herättää kuulijan tähän hetkeen ja tuo hymyn kasvoille, ennen kuin musiikki johdattelee häntä lempeästi eteenpäin.\n\nØsthøvel hyödyntää tätä herkkää yhteyttä luodakseen settejä, jotka kutsuvat kuulijaa itsetutkiskeluun liikkeen ja tanssin kautta. Tällä kertaa hänen valitsemansa väline on rumpubasso, joka tarjoaa sekä tilaa että voimakasta energiatiheyttä — täydellinen alusta käsitellä viime vuosien tunteita, niin henkilökohtaisia kuin maailmanlaajuisia. Voimapuu -projektissaan Østhøvel vie kuulijansa henkilökohtaiselle matkalle, jossa liikutaan synkimmistä tunteista kohti valoisampia, luoden syvän ja mukaansatempaavan kokemuksen, joka rohkaisee sekä pohdiskeluun että vapautumiseen.",
+    "media": ""
   },
   {
     "name": "Rupikonna",
     "slug": "rupikonna",
-    "slot": "TBA",
-    "venue": "TBA",
-    "image": "rupikonna.jpg"
+    "image": "rupikonna.jpg",
+    "description": "Rupikonna on diskon ja housen lähettiläs, joka pystyvaihdoillaan runttaa festarikansan tamppauslihaksia ja nostaa tunnelman kattoon. Hänen tarkkaan valitut rytminsä vievät sinut intensiiviselle ja energiselle matkalle, jossa huolet unohtuvat ja tanssilattia hehkuu ilosta ja yhteisöllisyydestä. Kuten rupi suojaa haavaa parantuakseen, Rupikonna siunaa yleisönsä voimallisella rytmillä ja metalla, joka antaa jokaiselle mahdollisuuden vapautua ja eheytyä musiikin avulla",
+    "media": ""
   },
   {
     "name": "Pace",
     "slug": "pace",
-    "slot": "TBA",
-    "venue": "TBA",
-    "image": "pace.jpg"
+    "image": "pace.jpg",
+    "description": "",
+    "media": ""
   },
   {
     "name": "Jerry Cheese",
     "slug": "jerry-cheese",
-    "slot": "TBA",
-    "venue": "TBA",
-    "image": "jerrycheese.jpg"
+    "image": "jerrycheese.jpg",
+    "description": "",
+    "media": ""
   }
 ]

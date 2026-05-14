@@ -323,13 +323,17 @@
             color: #fff;
         }
         #section-artistit { background: #fafaf9; }
-        #section-artist   { background: #fafaf9; overflow: hidden; }
+        #section-artist { background: #fafaf9; }
         #section-artist .section-inner { padding: 0; height: 100%; }
 
         .artist-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
             height: 100%;
+        }
+        @media (min-width: 901px) {
+            #section-artist { overflow: hidden; }
+            .artist-content { height: 100%; overflow-y: auto; }
         }
         @media (max-width: 900px) {
             .artist-split { grid-template-columns: 1fr; height: auto; }
@@ -346,11 +350,25 @@
             background-position: center;
         }
         .artist-content {
-            height: 100%;
-            overflow-y: auto;
             padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 72px);
             box-sizing: border-box;
         }
+        .artist-back {
+            font-family: 'Doto', sans-serif;
+            font-variation-settings: "ROND" 100;
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            color: rgba(0,0,0,0.45);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            display: block;
+            transition: color 0.15s;
+        }
+        .artist-back:hover { color: rgba(0,0,0,0.85); }
         .artist-content-slot {
             font-family: 'Doto', sans-serif;
             font-variation-settings: "ROND" 100;
@@ -369,6 +387,14 @@
             line-height: 1;
             color: #111;
             margin: 0 0 1.5rem;
+        }
+        .artist-media {
+            width: 100%;
+            height: 166px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            display: block;
         }
         .artist-content-bio {
             font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -1180,15 +1206,15 @@
                 const bgStyle = a.image
                     ? `background: url('${BASE}/${a.image}') center/cover no-repeat`
                     : `background: ${GRADIENTS[artists.indexOf(a) % GRADIENTS.length]}`;
-                const slot = [a.slot, a.venue].filter(Boolean).join(' · ');
                 detail.innerHTML = `<div class="artist-split">
                         <div class="artist-photo">
                             <div class="artist-photo-bg" style="${bgStyle}"></div>
                         </div>
                         <div class="artist-content">
-                            ${slot && slot !== 'TBA · TBA' ? `<p class="artist-content-slot">${slot}</p>` : ''}
+                            <button class="artist-back" onclick="history.back()">« Takaisin</button>
                             <h2 class="artist-content-name">${a.name}</h2>
-                            ${a.bio ? `<p class="artist-content-bio">${a.bio}</p>` : ''}
+                            ${a.description ? a.description.split('\n\n').map(p => `<p class="artist-content-bio">${p}</p>`).join('') : ''}
+                            ${a.media ? `<iframe class="artist-media" src="${a.media}" scrolling="no" allow="autoplay"></iframe>` : ''}
                         </div>
                     </div>`;
             }

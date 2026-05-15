@@ -772,3 +772,115 @@ body::before {
     color: #111;
     line-height: 1.1;
 }
+
+.install-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+    transition: transform 0.32s ease, opacity 0.32s ease, bottom 0.32s ease;
+    transform: translateY(0);
+}
+.install-banner.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+}
+.install-banner-icon {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.install-banner-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.install-banner-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+}
+.install-banner-title {
+    font-family: 'Doto', sans-serif;
+    font-variation-settings: "ROND" 100;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    color: #000;
+    margin: 0;
+    line-height: 1.1;
+}
+.install-banner-text {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    line-height: 1.3;
+    color: #333;
+    margin: 4px 0 0;
+}
+.install-banner-steps {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #333;
+    margin: 8px 0 0;
+}
+.install-banner-steps.hidden { display: none; }
+.install-banner-steps ol {
+    margin: 0;
+    padding-left: 18px;
+}
+.install-banner-share-icon {
+    display: inline-flex;
+    vertical-align: -3px;
+    margin: 0 2px;
+}
+.install-banner-cta {
+    flex: 0 0 auto;
+    appearance: none;
+    border: 0;
+    background: #000;
+    color: #fff;
+    font-family: 'Doto', sans-serif;
+    font-variation-settings: "ROND" 100;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    padding: 10px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+.install-banner-cta.hidden { display: none; }
+.install-banner-cta:active { transform: scale(0.97); }
+.install-banner-close {
+    flex: 0 0 auto;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: #666;
+    font-size: 22px;
+    line-height: 1;
+    padding: 6px 8px;
+    cursor: pointer;
+}
+.install-banner-close:hover { color: #000; }
+
+@media (hover: hover) and (pointer: fine) {
+    .install-banner { display: none; }
+}

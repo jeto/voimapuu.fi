@@ -23,6 +23,7 @@
     <meta name="twitter:description" content="Sitä saa mitä tekee">
     <meta name="twitter:image" content="https://voimapuu.fi/2026/meta.webp">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/2026/icon-512.png">
     <link rel="preload" href="/fonts/Pilowlava-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/Pilowlava-Atome.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/Doto-VariableFont_ROND,wght.ttf" as="font" type="font/ttf" crossorigin>
@@ -151,6 +152,17 @@
             </div>
         </section>
     </main>
+    <div class="install-banner hidden" id="install-banner" role="region" aria-label="Tallenna kotinäytölle">
+        <div class="install-banner-icon"><img src="/2026/icon.png" alt=""></div>
+        <div class="install-banner-body">
+            <p class="install-banner-title">Vie ohjelma metsään</p>
+            <p class="install-banner-text" id="install-banner-text"></p>
+            <div class="install-banner-steps hidden" id="install-banner-steps"></div>
+        </div>
+        <button class="install-banner-cta hidden" id="install-banner-cta" type="button"></button>
+        <button class="install-banner-close" id="install-banner-close" type="button" aria-label="Sulje">×</button>
+    </div>
+    <script src="install-banner.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

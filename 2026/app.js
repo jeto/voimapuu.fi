@@ -179,6 +179,7 @@ window._p5 = new p5((p) => {
         landing.classList.toggle('hidden', !isLanding);
         if (footer) footer.classList.toggle('hidden', !isLanding);
         if (backBtn) backBtn.classList.toggle('hidden', isLanding);
+        if (window.__installBanner) window.__installBanner.setSection(section);
 
         const next = isLanding ? null : document.getElementById(`section-${section}`);
 

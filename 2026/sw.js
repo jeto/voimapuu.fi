@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v3';
 const CACHE = `voimapuu-2026-${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [
@@ -6,9 +6,11 @@ const STATIC_ASSETS = [
     '/2026/index.html',
     '/2026/style.css',
     '/2026/app.js',
+    '/2026/install-banner.js',
     '/2026/artists.json',
     '/2026/mainstage.webp',
     '/2026/icon.png',
+    '/2026/icon-512.png',
     '/fonts/Pilowlava-Regular.woff2',
     '/fonts/Pilowlava-Atome.woff2',
     '/fonts/Doto-VariableFont_ROND,wght.ttf',

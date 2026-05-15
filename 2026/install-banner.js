@@ -13,7 +13,7 @@
         (navigator.maxTouchPoints > 1 && /Mac/.test(ua));
     const isAndroid = () => /Android/i.test(ua);
     const isInAppBrowser = () =>
-        /FBAN|FBAV|Instagram|Line|MicroMessenger|; wv\)/.test(ua);
+        /FBAN|FBAV|Instagram|Line|Telegram|MicroMessenger|; wv\)/.test(ua);
 
     const banner = document.getElementById('install-banner');
     if (!banner) return;

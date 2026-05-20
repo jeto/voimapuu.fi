@@ -171,8 +171,10 @@ tr:hover {
 }
 
 .artist-img {
-    width: 50%;
-    height: auto;
+    width: 40%;
+    aspect-ratio: 4/5;
+    object-fit: contain;
+    flex-shrink: 0;
     align-self: flex-start;
     border-radius: 8px;
 }

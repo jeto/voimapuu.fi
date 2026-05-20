@@ -35,8 +35,12 @@ jobs:
         run: |
           for f in $(find . -name "*.html" -not -path "*/.git/*"); do
             echo "Checking $f"
-            tidy -q -e "$f"
-            if [ $? -eq 2 ]; then exit 1; fi
+            code=0
+            tidy -q -e --doctype html5 "$f" || code=$?
+            if [ "$code" -ge 2 ]; then
+              echo "HTML errors found in $f"
+              exit 1
+            fi
           done
 
   deploy:

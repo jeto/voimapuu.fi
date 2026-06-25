@@ -350,7 +350,7 @@ window._p5 = new p5((p) => {
         requestAnimationFrame(tick);
     }
 
-    const OHJELMA_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTHhUhQqVy8nSI_6odNTmAmb3LSCKB02pgt5K--N6souyAifLzSHwsHlkY6u66qnJ4IDtzx30MeG2C5/pub?gid=1927498102&single=true&output=csv';
+    const OHJELMA_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTHhUhQqVy8nSI_6odNTmAmb3LSCKB02pgt5K--N6souyAifLzSHwsHlkY6u66qnJ4IDtzx30MeG2C5/pub?gid=106610374&single=true&output=csv';
     const DAYS = ['Torstai', 'Perjantai', 'Lauantai', 'Sunnuntai'];
 
     function parseCsvRow(line) {
@@ -369,23 +369,27 @@ window._p5 = new p5((p) => {
             const res = await fetch(OHJELMA_URL);
             const text = await res.text();
             const rows = text.trim().split('\n').map(parseCsvRow);
-            const venues = rows[0].slice(1).map(v => v.trim());
-            const byDay = {};
-            let day = null;
+            // Columns: Stage, Päivä, Aloitus, Lopetus, Mitä
+            const slotsByDay = {};
             for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                const first = row[0].trim();
-                if (DAYS.includes(first)) { day = first; byDay[day] = []; continue; }
-                if (!day || !/^\d{1,2}:\d{2}$/.test(first)) continue;
-                const events = [];
-                for (let j = 1; j < row.length; j++) {
-                    const name = row[j].trim();
-                    if (name) events.push({ name, venue: venues[j - 1] });
-                }
-                if (events.length) byDay[day].push({ time: first, events });
+                const [venue, day, start, end, name] = rows[i].map(c => c.trim());
+                if (!venue || !day || !start || !name) continue;
+                if (!slotsByDay[day]) slotsByDay[day] = {};
+                if (!slotsByDay[day][start]) slotsByDay[day][start] = { time: start, end, events: [] };
+                slotsByDay[day][start].events.push({ name, venue });
+            }
+            const byDay = {};
+            for (const day of Object.keys(slotsByDay)) {
+                byDay[day] = Object.values(slotsByDay[day])
+                    .sort((a, b) => a.time.localeCompare(b.time));
             }
             return byDay;
         } catch (e) { return {}; }
+    }
+
+    function timeToMins(t) {
+        const [h, m] = t.split(':').map(Number);
+        return h * 60 + m;
     }
 
     async function renderOhjelma() {
@@ -408,14 +412,25 @@ window._p5 = new p5((p) => {
         container.innerHTML = DAYS.map(day => {
             const slots = byDay[day] || [];
             slots.forEach(({ events }) => events.forEach(({ venue }) => allVenues.add(venue)));
-            const rowsHtml = slots.flatMap(({ time, events }) =>
+            const venueStarts = {};
+            slots.forEach(({ time, events }) =>
+                events.forEach(({ venue }) => {
+                    (venueStarts[venue] = venueStarts[venue] || new Set()).add(time);
+                })
+            );
+            const rowsHtml = slots.flatMap(({ time, end, events }) =>
                 events.map(({ name, venue }) => {
+                    const showEnd = end && !venueStarts[venue]?.has(end);
+                    const overnight = showEnd && timeToMins(end) < timeToMins(time);
+                    const timeLabel = showEnd
+                        ? `${time}–${end}${overnight ? '<sup>+1</sup>' : ''}`
+                        : time;
                     const c = VENUE_COLORS[venue] || 'rgba(255,255,255,0.28)';
                     const slug = artistMap.get(name.toLowerCase());
                     const nameHtml = slug
                         ? `<span class="act act-link" data-slug="${slug}">${name}</span>`
                         : `<span class="act">${name}</span>`;
-                    return `<tr data-venue="${venue}"><td>${time}</td><td>${nameHtml}</td><td style="color:${c}">${venue}</td></tr>`;
+                    return `<tr data-venue="${venue}"><td>${timeLabel}</td><td>${nameHtml}</td><td style="color:${c}">${venue}</td></tr>`;
                 })
             ).join('');
             return `<div id="${day.toLowerCase()}" class="ohjelma-anchor">

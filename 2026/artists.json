@@ -63,5 +63,12 @@
     "thumbnail": "clippin11.webp",
     "description": "Clippin' on kuin myyttinen hahmo Suomen elektronisen musiikin underground-skenessä, tunnettu lempeästä ja rauhallisesta olemuksestaan sekä ystävällisestä luonteestaan. Hänen läsnäolonsa on sekä vaikuttava että lähestyttävä, mikä tekee hänestä erityisen arvostetun artistin.\nIntohimo bassoon on vienyt hänet fyysisen äänikokemuksen loputtomalle matkalle. Hän on kehittänyt intohimonsa ammattitaidoksi, ja hänen vaikutuksensa ääniinsinöörinä tavoittaa tuhansia klubien ja festivaalien kävijöitä joka vuosi. Hänen DJ-settinsä ovat tunnettuja korkeasta energiastaan ja armottomuudestaan, heijastaen hänen sisäistä taisteluhenkeään.\nTavoite on yksiselitteinen: pitää hauskaa!",
     "media": []
+  },
+  {
+    "name": "Stereotyyppi",
+    "slug": "stereotyyppi",
+    "image": "stereotyyppi.webp",
+    "thumbnail": "stereotyyppi_thumb.webp",
+    "description": "Kiristäkää supparin ruuvit ja kengännauhat, täältä pesee basso-lovee <3<3"
   }
 ]

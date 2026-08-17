@@ -247,7 +247,7 @@ window._p5 = new p5((p) => {
         if (artistsCache) return artistsCache;
         try {
             const res = await fetch(`${BASE}/artists.json`);
-            artistsCache = await res.json();
+            artistsCache = (await res.json()).sort((a, b) => a.name.localeCompare(b.name, 'fi'));
         } catch (e) {
             artistsCache = [];
         }

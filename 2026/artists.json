@@ -38,11 +38,38 @@
     "media": []
   },
   {
-    "name": "Jerry Cheese",
-    "slug": "jerry-cheese",
-    "image": "jerrycheese.webp",
-    "thumbnail": "jerrycheese_thumb.webp",
-    "description": "Coloradon Aspenista lähtöisin oleva DJ, joka vaikuttaa nykyään Telluridessa. Aikaisemmassa elämässä hän oli järjestelmällinen ja laskelmoiva kasvuyrityksen perustaja, mutta irtautui siitä maailmasta jossain vaiheessa kokonaan. Tai ainakin vaihtoi sen toisenlaiseen logiikkaan, jossa päätökset tehdään enemmän intuitiolla kuin mittareilla.\nJerryn seteissä lämpö ja kylmyys kohtaavat, mutta lopputulos ei ole kädenlämpöinen. Setit rakentuvat hitaasti, kuin lumipakka: kerroksittain, ilman kiirettä. Musiikissa kuuluu ristiriita, jota hän ei edes yritä ratkaista. Kontrolli ja irti päästäminen elävät samassa liikkeessä. Samalla tarkkuudella, jolla vuoristossa luetaan maastoa, hän rakentaa hallitusti tunnelmaa jossa rytmi ei vie eteenpäin vaan syventää hetkeä.\nNykyään hän esiintyy harvoin, ja silloinkin valikoidusti. Hän soittaa vain vinyyliä, ei siksi että se olisi ”cool”, vaan koska se luo rajoitteita.\nSe mikä jää sanomatta, kertoo eniten.",
+    "name": "DJ FIRSTNAME LASTNAME",
+    "slug": "dj-firstname-lastname",
+    "image": "dj-firstname-lastname.webp",
+    "thumbnail": "dj-firstname-lastname_thumb.webp",
+    "description": "DJ FIRSTNAME LASTNAME is a Helsinki based DJ and producer with roots in Atlanta. Known for high-energy, genre fluid sets, he blends electronic foundations with unexpected twists, keeping crowds locked in and always wanting more.\nWith over five years behind the decks, he has played everything from underground parties and nightclubs to corporate events and silent discos. His strength lies in reading the room and turning it into a dance floor, whether that means deep cuts, big anthems, or something in between.",
+    "media": [
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2117253744&color=%23ac00ac&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+    ]
+  },
+  {
+    "name": "Lazy-L",
+    "slug": "lazy-l",
+    "image": "lazy-l.webp",
+    "thumbnail": "lazy-l_thumb.webp",
+    "description": "Sielultaan tanssia ja rytmimusiikin ystävä. Aloitteleva vinyylejä soittava DJ, tämän takia vaihdot ruosteisia, mutta biisit kultaisia! Musiikkirepertoaariin kuuluu soulia, funkkia, discoa ja tietty vähä housea! Tavoitteeni on sut tanssimaan ja hymyilemään.",
+    "media": []
+  },
+  {
+    "name": "Tsurba",
+    "slug": "tsurba",
+    "image": "tsurba.webp",
+    "thumbnail": "tsurba_thumb.webp",
+    "description": "Tsurba palaa parin vuoden keikkatauon jälkeen lavalle pellillisellä uunituoretta, käsin leivottua artesanaalista saundia - nyt ensimmäistä kertaa downtempo-twistillä.\nUudessa saundissa kuuluu erityisesti vaikutteita psydubin, junkan, ja dubstepin möyrybassoista. Äänisuunnittelun inspi- ja perspiraatiokoneena jylläävät lukemattomat tunnit modulaarisyntetisaattorin parissa. Lopputuloksena on matka läpi tunteiden ja tunnelmien, sukeltaen synkkyyteen ja nousten ilon yläilmoihin.",
+    "media": [
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1917050456&color=%23ac00ac&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+    ]
+  },
+  {
+    "name": "Solaris",
+    "slug": "solaris",
+    "image": "solaris.webp",
+    "description": "Rumpubasso. Junkka. Deeänbee. Ainoa musiikinlaji, jonka on pitänyt kehittää alagenre nimeltä \"Intelligent Dance Music\", koska kaikkihan sen tietävät ettei rumpubasso kauhean älykästä musiikkia ole.\nNopeaa musiikkia hitaille ihmisille.",
     "media": []
   },
   {

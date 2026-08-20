@@ -23,11 +23,11 @@
     "media": []
   },
   {
-    "name": "Rupikonna",
-    "slug": "rupikonna",
-    "image": "rupikonna.webp",
-    "thumbnail": "rupikonna_thumb.webp",
-    "description": "Rupikonna on diskon ja housen lähettiläs, joka pystyvaihdoillaan runttaa festarikansan tamppauslihaksia ja nostaa tunnelman kattoon. Hänen tarkkaan valitut rytminsä vievät sinut intensiiviselle ja energiselle matkalle, jossa huolet unohtuvat ja tanssilattia hehkuu ilosta ja yhteisöllisyydestä. Kuten rupi suojaa haavaa parantuakseen, Rupikonna siunaa yleisönsä voimallisella rytmillä ja metalla, joka antaa jokaiselle mahdollisuuden vapautua ja eheytyä musiikin avulla",
+    "name": "Konna",
+    "slug": "konna",
+    "image": "konna.webp",
+    "thumbnail": "konna_thumb.webp",
+    "description": "Ruvet on hoidettu ja Konna on tullut kutemaan.\nKonna runttaa pystyvaihdoillaan festarikansan tamppauslihaksia ja nostaa tunnelman kattoon. Tarkkaan valitut rytmit vievät intensiiviselle ja energiselle matkalle, jossa huolet unohtuvat ja tanssilattia hehkuu ilosta ja yhteisöllisyydestä. Tällä kertaa metsään ampastaan rehtiä ja menevää housea, yläpäästä tinkimättä.",
     "media": []
   },
   {
@@ -98,5 +98,61 @@
     "image": "stereotyyppi.webp",
     "thumbnail": "stereotyyppi_thumb.webp",
     "description": "Kiristäkää supparin ruuvit ja kengännauhat, täältä pesee basso-lovee <3<3"
+  },
+  {
+    "name": "Sweatshop Bois",
+    "slug": "sweatshop-bois",
+    "image": "sweatshop-bois.webp",
+    "thumbnail": "sweatshop-bois_thumb.webp",
+    "description": "Kädet ylös, housut alas.. tai pitäkää vaa ne housut jalas. Gluteenittomat biitit tarjoaa Kivenlahden Hessu Sklobo ja Krapulankka.",
+    "media": []
+  },
+  {
+    "name": "Late Nite",
+    "slug": "late-nite",
+    "image": "late-nite.webp",
+    "thumbnail": "late-nite_thumb.webp",
+    "description": "Late nite tunes for you silly goons",
+    "media": []
+  },
+  {
+    "name": "Konsta",
+    "slug": "konsta",
+    "image": "konsta.webp",
+    "thumbnail": "konsta_thumb.webp",
+    "description": "Siberia-born, Helsinki-based DJ exploring the space between melodic trance, progressive and harder electronic sounds. Expect emotional builds, driving rhythms and high-energy tracks selected for one reason: they feel good on a dancefloor.",
+    "media": []
+  },
+  {
+    "name": "Mari Mur",
+    "slug": "mari-mur",
+    "image": "mari-mur.webp",
+    "thumbnail": "mari-mur_thumb.webp",
+    "description": "Mari Mur",
+    "media": []
+  },
+  {
+    "name": "Slow Cloud",
+    "slug": "slow-cloud",
+    "image": "slow-cloud.webp",
+    "thumbnail": "slow-cloud_thumb.webp",
+    "description": "Steamy & groovy lower bpm sounds",
+    "media": []
+  },
+  {
+    "name": "durak",
+    "slug": "durak",
+    "image": "durak.webp",
+    "thumbnail": "durak_thumb.webp",
+    "description": "durakin sydän (ja vaihdot) laukkaa kaikenlaiselle diskoteekkimusiikille. syventävät opinnot italosta ja sivuaine eurodiskoa.",
+    "media": []
+  },
+  {
+    "name": "Pyöreän Pöydän Ritarit",
+    "slug": "pyorean-poydan-ritarit",
+    "image": "pyorean-poydan-ritarit.webp",
+    "thumbnail": "pyorean-poydan-ritarit_thumb.webp",
+    "description": "Svallan häiden jamisessio herätti vision esittää elektronista musiikkia livenä. Syntetisaattoreita alkoi kerääntyä erinäköisten mustien laatikoiden muodossa, ja tiesin jo alusta asti, että haluan esiintyä yhtyeenä. Taustalla oli syvä tarve ilmaista jotain, jota on mahdotonta sanoin kuvailla.\nPyöreän pöydän ritarit on projekti, jolla ei ole selkeää alkua eikä loppua. Musiikki on kokeellista, hetkittäin kaoottista ja vahvasti improvisoitua. Vietämme paljon aikaa metsässä, eksymme ja joskus löydämme myös metsästä ulos. Tavoitteemme on antaa syntyä sen taianomaisen hetken, joka on seuraavassa hetkessä jo kadonnut eikä tule ikinä takaisin.\nTervetuloa matkalle, jossa sekä muusikot että kuuntelijat ovat samassa tilassa.\nAnssi Kaikkonen, Aaro Saanio ja allekirjoittanut, Svante Saanio.",
+    "media": []
   }
 ]

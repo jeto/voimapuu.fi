@@ -364,6 +364,11 @@ window._p5 = new p5((p) => {
         return out;
     }
 
+    function timeToMins(t) {
+        const [h, m] = t.split(':').map(Number);
+        return h * 60 + m;
+    }
+
     async function loadOhjelma() {
         try {
             const res = await fetch(OHJELMA_URL);
@@ -381,15 +386,10 @@ window._p5 = new p5((p) => {
             const byDay = {};
             for (const day of Object.keys(slotsByDay)) {
                 byDay[day] = Object.values(slotsByDay[day])
-                    .sort((a, b) => a.time.localeCompare(b.time));
+                    .sort((a, b) => timeToMins(a.time) - timeToMins(b.time));
             }
             return byDay;
         } catch (e) { return {}; }
-    }
-
-    function timeToMins(t) {
-        const [h, m] = t.split(':').map(Number);
-        return h * 60 + m;
     }
 
     async function renderOhjelma() {

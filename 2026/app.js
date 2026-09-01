@@ -350,7 +350,10 @@ window._p5 = new p5((p) => {
         requestAnimationFrame(tick);
     }
 
-    const OHJELMA_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTHhUhQqVy8nSI_6odNTmAmb3LSCKB02pgt5K--N6souyAifLzSHwsHlkY6u66qnJ4IDtzx30MeG2C5/pub?gid=106610374&single=true&output=csv';
+    // Festival is over; serving the archived snapshot instead of the live sheet.
+    // For next year, point OHJELMA_URL back at the published Google Sheet CSV, e.g.:
+    // const OHJELMA_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTHhUhQqVy8nSI_6odNTmAmb3LSCKB02pgt5K--N6souyAifLzSHwsHlkY6u66qnJ4IDtzx30MeG2C5/pub?gid=106610374&single=true&output=csv';
+    const OHJELMA_URL = `${BASE}/ohjelma.csv`;
     const DAYS = ['Torstai', 'Perjantai', 'Lauantai', 'Sunnuntai'];
 
     function parseCsvRow(line) {
